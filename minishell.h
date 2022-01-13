@@ -30,7 +30,9 @@ int	main(int argc, char **argv, char **envp);
 
 //ft_split_arg.c
 typedef struct t_spliter {
+	int	start_i;
 	int	inside;
+	int	oldinside;
 	int	quote;
 }	t_spliter;
 
