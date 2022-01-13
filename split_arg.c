@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_arg.c                                     :+:      :+:    :+:   */
+/*   split_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaqueme <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -84,9 +84,9 @@ static void	ft_decide_split(char c, t_spliter *sp)
 			sp->quote = 0;
 		sp->inside = 1;
 	}
-	else if (sp->inside == 0 && c != ' ' && sp->quote == 0)
+	else if (sp->inside == 0 && !ft_isspace(c) && sp->quote == 0)
 		sp->inside = 1;
-	else if (sp->inside == 1 && c == ' ' && sp->quote == 0)
+	else if (sp->inside == 1 && ft_isspace(c) && sp->quote == 0)
 		sp->inside = 0;
 }
 
