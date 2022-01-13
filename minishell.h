@@ -26,4 +26,14 @@
 //main.c
 int	main(int argc, char **argv, char **envp);
 
+
+
+//ft_split_arg.c
+typedef struct t_spliter {
+	int	inside;
+	int	quote;
+}	t_spliter;
+
+char	**ft_split_arg(const char *s);
+
 #endif
