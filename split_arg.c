@@ -76,7 +76,7 @@ static void	ft_decide_split(const char *s, int *i, t_spliter *sp, char ***ptr)
 			sp->quote = 0;
 		sp->inside = 1;
 	}
-	else if (ft_strchr("<>;|&", s[*i]) != NULL)
+	else if (ft_strchr("<>|&", s[*i]) != NULL)
 	{
 		ft_cut_add(s, *i, &sp->start_i, ptr);
 		sp->start_i = *i;

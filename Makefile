@@ -1,5 +1,5 @@
 SRCS_DIR	= ./
-SRCS_FILES	= main.c
+SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c concat_tab.c builtin_manage.c builtin_cd.c
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 BONUS_DIR	= ./
@@ -27,13 +27,13 @@ HEADS		= -I. -I${LIBFT} -I${HOME}/.brew/Cellar/readline/8.1.1/include/
 LIBS		= -L${HOME}/.brew/Cellar/readline/8.1.1/lib/ -lreadline -lhistory
 
 .c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o} ${HEADS} 
+			${CC} ${CFLAGS} -c $< -o ${<:.c=.o} ${HEADS} -g
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
 			${MAKELIB} all
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}/libft.a ${LIBS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}/libft.a ${LIBS} -g -fsanitize=address
 
 ${NAMEB}:	${OBJSB}
 			${MAKELIB} all
