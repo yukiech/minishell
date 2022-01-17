@@ -24,10 +24,20 @@
 # include <mylibft.h>
 
 
+# define FILE_PERM S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
+
+typedef struct s_command {
+	int	nbarg;
+	int	fdin;
+	int	fdout;
+	char **args;
+}	t_command;
+
+
 //Store "cd" -> "cd_function"
 typedef struct s_builtin_cmd {
 	char *name;
-	void (*function)(char **, char **);
+	void (*function)(t_command *, char **);
 }	t_builtin_cmd;
 
 //Store x functions and x
@@ -35,11 +45,6 @@ typedef struct s_builtin {
 	int				nb;
 	t_builtin_cmd	**cmds;
 }	t_builtin;
-
-typedef struct s_commands {
-	int	nb;
-	char **cmds;
-}	t_commands;
 
 
 
@@ -52,11 +57,11 @@ int	main(int argc, char **argv, char **envp);
 int	ft_concat_tab(char ***ptr, char *new);
 
 
-//process_line.c
-void	ft_process_pipes(char *line, t_builtin *bt, char **envp);
+//process_pipes.c
+void   ft_process_pipes(char *line, t_builtin *bt, char **envp);
 
 //process_commands.c
-void	ft_process_commands(t_commands *cmds, t_builtin *bt, char **env);
+void	ft_process_commands(t_command *cmds, t_builtin *bt, char **env, int nbcmd);
 
 
 //functions.c
@@ -75,6 +80,6 @@ char	**ft_split_arg(const char *s);
 
 
 //builtin_cd.c
-void	builtin_cd(char **argv, char **envp);
+void	builtin_cd(t_command *cmd, char **envp);
 
 #endif

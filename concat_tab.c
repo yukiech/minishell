@@ -2,8 +2,9 @@
 
 int	ft_concat_tab(char ***ptr, char *new)
 {
-	int		count;
 	char	**newptr;
+	int		count;
+	int		i;
 
 	count = 0;
 	while ((*ptr) != NULL && (*ptr)[count] != NULL)
@@ -13,10 +14,11 @@ int	ft_concat_tab(char ***ptr, char *new)
 	newptr[count + 1] = NULL;
 	newptr[count] = new;
 
-	while (count > 0)
+	i = 0;
+	while (i < count)
 	{
-		count--;
-		newptr[count] = (*ptr)[count];
+		newptr[i] = (*ptr)[i];
+		i++;
 	}
 	if (*ptr != NULL)
 		free(*ptr);

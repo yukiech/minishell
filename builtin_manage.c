@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static t_builtin_cmd *new_builtin(char *name, void (*f)(char **, char **));
+static t_builtin_cmd *new_builtin(char *name, void (*f)(t_command *, char **));
 
 t_builtin *builtin_tab()
 {
@@ -16,7 +16,7 @@ t_builtin *builtin_tab()
 	return (tab);
 }
 
-static t_builtin_cmd *new_builtin(char *name, void (*f)(char **, char **))
+static t_builtin_cmd *new_builtin(char *name, void (*f)(t_command *, char **))
 {
 	t_builtin_cmd	*new;
 
