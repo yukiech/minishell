@@ -14,6 +14,7 @@ int	main(int argc, char **argv, char **envp)
 	line = malloc(0);
 	while (line != NULL)
 	{
+		printf("\n\n\n\n");
 		free(line);
 		line = readline("Test : ");
 

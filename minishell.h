@@ -37,7 +37,7 @@ typedef struct s_command {
 //Store "cd" -> "cd_function"
 typedef struct s_builtin_cmd {
 	char *name;
-	void (*function)(t_command *, char **);
+	void (*function)(t_command, char **);
 }	t_builtin_cmd;
 
 //Store x functions and x
@@ -63,6 +63,8 @@ void   ft_process_pipes(char *line, t_builtin *bt, char **envp);
 //process_commands.c
 void	ft_process_commands(t_command *cmds, t_builtin *bt, char **env, int nbcmd);
 
+//process_redirect.c
+void	ft_process_redirect(t_command *cmds, int nbcmd);
 
 //functions.c
 t_builtin		*builtin_tab();
@@ -80,6 +82,6 @@ char	**ft_split_arg(const char *s);
 
 
 //builtin_cd.c
-void	builtin_cd(t_command *cmd, char **envp);
+void	builtin_cd(t_command cmd, char **envp);
 
 #endif
