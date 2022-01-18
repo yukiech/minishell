@@ -3,7 +3,6 @@
 
 void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 {
-	int	pip[2];
 	int	i;
 	(void)cmds;
 	(void)envp;
@@ -27,22 +26,7 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 		
 	}
 
-
-	i = 0;
-	while (i < nbcmd - 1)
-	{
-		pipe(pip);
-		if (cmds[i].fdout == -1)
-			cmds[i].fdout = pip[1];
-		else
-			close(pip[1]);
-
-		if (cmds[i + 1].fdin == -1)
-			cmds[i + 1].fdin = pip[0];
-		else
-			close(pip[0]);
-		i++;		
-	}
+	ft_process_fds(cmds, nbcmd);
 
 
 	i = 0;
@@ -61,49 +45,8 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 		
 	}
 
+	ft_fork_commands(cmds, bt, envp, nbcmd);
 
-	int	*pids;
-
-	pids = ft_calloc(nbcmd, sizeof(int));
-
-	i = 0;
-	while (i < nbcmd)
-	{
-		pids[i] = fork();
-
-		if (pids[i] == 0)
-		{
-			dup2(cmds[i].fdin, 0);
-			dup2(cmds[i].fdout, 1);
-
-			j = 0;
-			while (j < bt->nb)
-			{
-				if (ft_strncmp(cmds[i].args[0], bt->cmds[j]->name, ft_strlen(bt->cmds[j]->name + 1)) == 0)
-				{
-					bt->cmds[j]->function(cmds[i], envp);
-					break ;
-				}
-				j++;
-			}
-			if (j == bt->nb)
-				builtin_default(cmds[i], envp);
-			ft_free_commands(cmds, nbcmd);
-			ft_free_builtins(bt);
-			exit(1);
-		}
-		i++;
-	}
-
-	int status;
-
-	i = 0;
-	while (i < nbcmd)
-	{
-		waitpid(pids[i], &status, 0);
-		i++;
-	}
-	free(pids);
 
 	i = 0;
 	while (i < nbcmd)

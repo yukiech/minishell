@@ -60,15 +60,15 @@ int	main(int argc, char **argv, char **envp);
 int	ft_concat_tab(char ***ptr, char *new);
 
 
-//process_pipes.c
 void   ft_process_pipes(char *line, t_builtin *bt, char **envp);
 void   ft_free_commands(t_command *cmds, int nbcmd);
 
-//process_commands.c
-void	ft_process_commands(t_command *cmds, t_builtin *bt, char **env, int nbcmd);
+void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
 
-//process_redirect.c
 void	ft_process_redirect(t_command *cmds, int nbcmd);
+void	ft_process_fds(t_command *cmds, int nbcmd);
+void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
+void	ft_start_command(t_command cmd, t_builtin *bt, char **envp);
 
 //functions.c
 t_builtin		*builtin_tab();
