@@ -7,11 +7,13 @@ t_builtin *builtin_tab()
 	t_builtin	*tab;
 
 	tab = malloc(sizeof(t_builtin));
-	tab->nb = 1;
+	tab->nb = 3;
 
 	tab->cmds = malloc(sizeof(t_builtin_cmd *) * tab->nb);
 
 	tab->cmds[0] = new_builtin("cd", &builtin_cd);
+	tab->cmds[1] = new_builtin("pwd", &builtin_pwd);
+	tab->cmds[2] = new_builtin("env", &builtin_env);
 
 	return (tab);
 }

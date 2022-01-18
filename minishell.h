@@ -13,6 +13,9 @@
 # include <stdio.h>
 //Signals
 # include <signal.h>
+//PATH_MAX
+# include <limits.h>
+
 
 // # include <readline/readline.h>
 // # include "~/.brew/opt/readline/include/readline/history.h"
@@ -83,5 +86,11 @@ char	**ft_split_arg(const char *s);
 
 //builtin_cd.c
 void	builtin_cd(t_command cmd, char **envp);
+
+//builtin_pwd.c
+void	builtin_pwd(t_command cmd, char **envp);
+
+//builtin_env.c
+void	builtin_env(t_command cmd, char **envp);
 
 #endif
