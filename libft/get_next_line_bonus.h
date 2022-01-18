@@ -25,10 +25,10 @@ void	ft_empty_buffer(char *buffer, char **newline);
 int		ft_gnl_init(char **buffer, int *road, int fd);
 void	ft_full_free(void **ptr);
 
-size_t	ft_strlen(const char *str);
+size_t	ft_gnl_strlen(const char *str);
 char	*ft_strjoin_free(char *s1, char *s2);
 size_t	ft_strchr_int(const char *str, int c);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_gnl_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_gnl_substr(char const *s, unsigned int start, size_t len);
 
 #endif
