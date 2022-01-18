@@ -1,5 +1,5 @@
 SRCS_DIR	= ./
-SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c process_redirect.c process_fds.c fork_commands.c start_command.c \
+SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c process_redirect.c process_fds.c launch_commands.c search_command.c \
 		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 

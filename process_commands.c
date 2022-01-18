@@ -45,7 +45,7 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 		
 	}
 
-	ft_fork_commands(cmds, bt, envp, nbcmd);
+	ft_launch_commands(cmds, bt, envp, nbcmd);
 
 
 	i = 0;

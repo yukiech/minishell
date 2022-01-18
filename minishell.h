@@ -67,8 +67,8 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 
 void	ft_process_redirect(t_command *cmds, int nbcmd);
 void	ft_process_fds(t_command *cmds, int nbcmd);
-void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
-void	ft_start_command(t_command cmd, t_builtin *bt, char **envp);
+void	ft_launch_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
+void	ft_search_command(t_command cmd, t_builtin *bt, char **envp);
 
 //functions.c
 t_builtin		*builtin_tab();

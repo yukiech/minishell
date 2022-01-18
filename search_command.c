@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	ft_start_command(t_command cmd, t_builtin *bt, char **envp)
+void	ft_search_command(t_command cmd, t_builtin *bt, char **envp)
 {
 	int	i;
 
