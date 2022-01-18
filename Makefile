@@ -33,7 +33,7 @@ LIBS		= -L${HOME}/.brew/Cellar/readline/8.1.1/lib/ -lreadline -lhistory
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			@tput setaf 2
+			@tput setaf 46
 			${MAKELIB} all
 			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}/libft.a ${LIBS} -g -fsanitize=address
 			@tput setaf 1
@@ -48,13 +48,13 @@ clean:
 			@tput setaf 1
 			${RM} ${OBJS} ${OBJSB}
 			${MAKELIB} clean
-			@tput setaf 2
+			@tput setaf 46
 
 fclean:		clean
 			@tput setaf 1
 			${RM} ${NAME} ${NAMEB}
 			${MAKELIB} fclean
-			@tput setaf 2
+			@tput setaf 46
 
 re:			fclean all
 
