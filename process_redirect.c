@@ -56,7 +56,8 @@ static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir)
 	}
 
 	ft_free_redirect(cmd, *sign_i);
-	(*sign_i)++;
+//	(*sign_i)++;
+	(*sign_i)--;
 }
 
 static void	ft_heredoc(t_command *cmd, int *sign_i)
@@ -92,7 +93,13 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 static void	ft_free_redirect(t_command *cmd, int todel)
 {
 	free(cmd->args[todel]);
-	cmd->args[todel] = NULL;
 	free(cmd->args[todel + 1]);
+	while (todel + 2 < cmd->nbarg)
+	{
+		cmd->args[todel] = cmd->args[todel + 2];
+		todel++;
+	}
+	cmd->args[todel] = NULL;
 	cmd->args[todel + 1] = NULL;
+	cmd->nbarg-=2;
 }
