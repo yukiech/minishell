@@ -18,6 +18,20 @@ t_builtin *builtin_tab()
 	return (tab);
 }
 
+void	ft_free_builtins(t_builtin *tab)
+{
+	int	i;
+
+	i = 0;
+	while (i < tab->nb)
+	{
+		free(tab->cmds[i]);
+		i++;
+	}
+	free(tab->cmds);
+	free(tab);
+}
+
 static t_builtin_cmd *new_builtin(char *name, void (*f)(t_command, char **))
 {
 	t_builtin_cmd	*new;

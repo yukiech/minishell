@@ -62,6 +62,7 @@ int	ft_concat_tab(char ***ptr, char *new);
 
 //process_pipes.c
 void   ft_process_pipes(char *line, t_builtin *bt, char **envp);
+void   ft_free_commands(t_command *cmds, int nbcmd);
 
 //process_commands.c
 void	ft_process_commands(t_command *cmds, t_builtin *bt, char **env, int nbcmd);
@@ -71,6 +72,7 @@ void	ft_process_redirect(t_command *cmds, int nbcmd);
 
 //functions.c
 t_builtin		*builtin_tab();
+void			ft_free_builtins(t_builtin *tab);
 
 
 //ft_split_arg.c

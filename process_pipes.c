@@ -24,6 +24,25 @@ void	ft_process_pipes(char *line, t_builtin *bt, char **envp)
 	ft_process_commands(commands, bt, envp, cmd_i + 1);
 }
 
+void	ft_free_commands(t_command *cmds, int nbcmd)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < nbcmd)
+	{
+		j = 0;
+		while (j < cmds[i].nbarg)
+		{
+			free(cmds[i].args[j]);
+			j++;
+		}
+		i++;
+	}
+	free(cmds);
+}
+
 static int ft_count_pipes(char **parts)
 {
 	int	count;

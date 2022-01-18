@@ -1,7 +1,6 @@
 
 #include "minishell.h"
 
-
 void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 {
 	int	pip[2];
@@ -89,6 +88,8 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 			}
 			if (j == bt->nb)
 				builtin_default(cmds[i], envp);
+			ft_free_commands(cmds, nbcmd);
+			ft_free_builtins(bt);
 			exit(1);
 		}
 		i++;
