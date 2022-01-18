@@ -63,24 +63,54 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 	}
 
 
+	int	*pids;
+
+	pids = ft_calloc(nbcmd, sizeof(int));
 
 	i = 0;
 	while (i < nbcmd)
 	{
-		j = 0;
-		while (j < bt->nb)
+		pids[i] = fork();
+
+		if (pids[i] == 0)
 		{
-			if (ft_strncmp(cmds[i].args[0], bt->cmds[j]->name, ft_strlen(bt->cmds[j]->name + 1)) == 0)
+			dup2(cmds[i].fdin, 0);
+			dup2(cmds[i].fdout, 1);
+
+			j = 0;
+			while (j < bt->nb)
 			{
-				bt->cmds[j]->function(cmds[i], envp);
-				break ;
+				if (ft_strncmp(cmds[i].args[0], bt->cmds[j]->name, ft_strlen(bt->cmds[j]->name + 1)) == 0)
+				{
+					bt->cmds[j]->function(cmds[i], envp);
+					break ;
+				}
+				j++;
 			}
-//			printf("_%s_\n", bt->cmds[i]->name);
-//			printf("\n");
-			j++;
+			if (j == bt->nb)
+				builtin_default(cmds[i], envp);
+			exit(1);
 		}
-		if (j == bt->nb)
-			builtin_default(cmds[i], envp);
+		i++;
+	}
+
+	int status;
+
+	i = 0;
+	while (i < nbcmd)
+	{
+		waitpid(pids[i], &status, 0);
+		i++;
+	}
+	free(pids);
+
+	i = 0;
+	while (i < nbcmd)
+	{
+		if(cmds[i].fdin != 0)
+			close(cmds[i].fdin);
+		if(cmds[i].fdout != 1)
+			close(cmds[i].fdout);		
 		i++;
 	}
 }
