@@ -1,6 +1,6 @@
 SRCS_DIR	= ./
 SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c process_redirect.c \
-		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c
+		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 BONUS_DIR	= ./

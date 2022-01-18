@@ -84,6 +84,9 @@ typedef struct t_spliter {
 char	**ft_split_arg(const char *s);
 
 
+//builtin_default.c
+void	builtin_default(t_command cmd, char **envp);
+
 //builtin_cd.c
 void	builtin_cd(t_command cmd, char **envp);
 

@@ -62,6 +62,8 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 		
 	}
 
+
+
 	i = 0;
 	while (i < nbcmd)
 	{
@@ -71,11 +73,14 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 			if (ft_strncmp(cmds[i].args[0], bt->cmds[j]->name, ft_strlen(bt->cmds[j]->name + 1)) == 0)
 			{
 				bt->cmds[j]->function(cmds[i], envp);
+				break ;
 			}
 //			printf("_%s_\n", bt->cmds[i]->name);
 //			printf("\n");
 			j++;
 		}
+		if (j == bt->nb)
+			builtin_default(cmds[i], envp);
 		i++;
 	}
 }
