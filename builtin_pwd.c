@@ -9,7 +9,6 @@ void	builtin_pwd(t_command cmd, char **envp)
 
 	if (getcwd(pwd, PATH_MAX))
 	{
-		write(1, &pwd, ft_strlen(pwd));
-		write(1, "\n", 1);
+		ft_putendl_fd(pwd, 1);
 	}
 }

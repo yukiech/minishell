@@ -100,8 +100,7 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 		line[ft_strlen(line) - 1] = '\0';
 		if (ft_strncmp(line, cmd->args[*sign_i + 1], ft_strlen(cmd->args[*sign_i + 1]) + 1) == 0)
 			break ;
-		ft_putstr_fd(line, pip[1]);
-		ft_putstr_fd("\n", pip[1]);
+		ft_putendl_fd(line, pip[1]);
 		free(line);
 	}
 	if (line != NULL)
