@@ -13,7 +13,7 @@
 #include "get_next_line_bonus.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1 
+# define BUFFER_SIZE 42
 #endif
 
 void	ft_empty_buffer(char *buffer, char **newline)

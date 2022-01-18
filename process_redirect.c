@@ -1,6 +1,7 @@
 #include "minishell.h"
 
 static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir);
+static void ft_concat_file(t_command *cmd, char *filename, int flags);
 static void	ft_heredoc(t_command *cmd, int *sign_i);
 static void	ft_free_redirect(t_command *cmd, int todel);
 
@@ -43,21 +44,46 @@ static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir)
 		if (cmd->fdin == -1)
 			cmd->fdin = open(cmd->args[*sign_i + 1], flags);
 		else
-			close(open(cmd->args[*sign_i + 1], flags));
+			ft_concat_file(cmd, cmd->args[*sign_i + 1], flags);
 		printf("[open] _%s_\n", cmd->args[*sign_i + 1]);
 	}
 	else if (dir == 1)
 	{
-		if (cmd->fdout == -1)
-			cmd->fdout = open(cmd->args[*sign_i + 1], flags, FILE_PERM);
-		else
-			close(open(cmd->args[*sign_i + 1], flags, FILE_PERM));
+		if (cmd->fdout != -1)
+			close(cmd->fdout);
+		cmd->fdout = open(cmd->args[*sign_i + 1], flags, FILE_PERM);
 		printf("[open] _%s_\n", cmd->args[*sign_i + 1]);
 	}
 
 	ft_free_redirect(cmd, *sign_i);
-//	(*sign_i)++;
 	(*sign_i)--;
+}
+
+static void ft_concat_file(t_command *cmd, char *filename, int flags)
+{
+	int	pip[2];
+	char *line;
+
+	pipe(pip);
+	line = get_next_line(cmd->fdin);
+	while (line != NULL)
+	{
+		ft_putstr_fd(line, pip[1]);
+		free(line);
+		line = get_next_line(cmd->fdin);
+	}
+	close(cmd->fdin);
+	cmd->fdin = open(filename, flags);
+	line = get_next_line(cmd->fdin);
+	while (line != NULL)
+	{
+		ft_putstr_fd(line, pip[1]);
+		free(line);
+		line = get_next_line(cmd->fdin);
+	}
+	close(cmd->fdin);
+	close(pip[1]);
+	cmd->fdin = pip[0];		
 }
 
 static void	ft_heredoc(t_command *cmd, int *sign_i)
@@ -82,10 +108,9 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 		free(line);
 	close(pip[1]);
 
-	if (cmd->fdin == -1)
-		cmd->fdin = pip[0];
-	else
-		close(pip[0]);
+	if (cmd->fdin != -1)
+		close(cmd->fdin);
+	cmd->fdin = pip[0];
 
 	ft_free_redirect(cmd, *sign_i);
 }
