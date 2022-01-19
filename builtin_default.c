@@ -10,7 +10,14 @@ static void	free_default(char **path_splitted)
 		free(path_splitted[i]);
 		i++;
 	}
+	i = 0;
+	while (path_splitted_cmd[i])
+	{
+		free(path_splitted_cmd[i]);
+		i++;
+	}
 	free(path_splitted);
+	free(path_splitted_cmd);
 }
 
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
@@ -28,14 +35,15 @@ static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
 		else
 			i++;
 	}
+
 	return (1);
 }
 
 void	builtin_default(t_command cmd, char **envp)
 {
-	(void)envp;
 	char	*path;
 	char	**path_splitted;
+	char	**path_splitted_cmd;
 	char	*add_cmd;
 	int	i;
 	
@@ -47,12 +55,11 @@ void	builtin_default(t_command cmd, char **envp)
 	{
 		char 	*temp;	
 		temp = ft_strjoin(path_splitted[i], add_cmd);
-		free(path_splitted[i]);
-		path_splitted[i] = temp;
+	//	free(path_splitted[i]);
+		path_splitted_cmd[i] = temp;
 		i++;
 	
 	}
-/*	if ((*/test_and_exec_cmd(path_splitted, cmd, envp)/* != 0))*/;
-//		perror("Command inconnue\n");
-	free_default(path_splitted);
+	test_and_exec_cmd(path_splitted_cmd, cmd, envp);
+	free_default(path_splitted, path_splitted_cmd);
 }
