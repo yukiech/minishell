@@ -6,7 +6,7 @@
 /*   By: jjaqueme <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:50:45 by jjaqueme          #+#    #+#             */
-/*   Updated: 2021/10/21 12:50:45 by jjaqueme         ###   ########.fr       */
+/*   Updated: 2022/01/18 20:14:38 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_nb_len(int n)
 
 int	ft_nb_len_u(unsigned int n)
 {
-	if (n < 10 && n >= 0)
+	if (n < 10)
 		return (1);
 	else
 		return (ft_nb_len_u(n / 10) + 1);
@@ -61,7 +61,7 @@ int	ft_nb_len_u(unsigned int n)
 
 int	ft_nb_len_h(unsigned long n)
 {
-	if (n < 16 && n >= 0)
+	if (n < 16)
 		return (1);
 	else
 		return (ft_nb_len_h(n / 16) + 1);
