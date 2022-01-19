@@ -15,7 +15,9 @@
 # include <signal.h>
 //PATH_MAX
 # include <limits.h>
-
+//waitpids
+#include <sys/types.h>
+#include <sys/wait.h>
 
 // # include <readline/readline.h>
 // # include "~/.brew/opt/readline/include/readline/history.h"
@@ -97,5 +99,8 @@ void	builtin_pwd(t_command cmd, char **envp);
 
 //builtin_env.c
 void	builtin_env(t_command cmd, char **envp);
+
+//builtin_echo.c
+void	builtin_echo(t_command cmd, char **envp);
 
 #endif

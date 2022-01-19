@@ -1,6 +1,6 @@
 SRCS_DIR	= ./
 SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c process_redirect.c process_fds.c launch_commands.c search_command.c \
-		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c
+		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c builtin_echo.c
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 BONUS_DIR	= ./
@@ -21,7 +21,8 @@ AR			= ar rcs
 CP			= cp -f
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		=
+CFLAGS2		= -Wall -Wextra -Werror
 
 HEADS		= -I. -I${LIBFT} -I${HOME}/.brew/Cellar/readline/8.1.1/include/
 
