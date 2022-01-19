@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void	free_default(char **path_splitted)
+static void	free_default(char **path_splitted, char **path_splitted_cmd)
 {
 	int	i;
 
