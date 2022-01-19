@@ -22,11 +22,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	ptr = malloc(s1len + s2len);
+	ptr = malloc(s1len + s2len + 1);
 	if (ptr != NULL)
 	{
 		ft_strlcpy(ptr, s1, s1len + 1);
 		ft_strlcpy(ptr + s1len, s2, s2len + 1);
 	}
+	ptr[s1len + s2len] = '\0';
 	return (ptr);
 }
