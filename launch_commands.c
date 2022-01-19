@@ -32,21 +32,12 @@ static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp)
 	ft_search_command(cmds, bt, envp, 0);
 
 	dup2(bakstdin, 0);
-	dup2(bakstdout, 0);
+	dup2(bakstdout, 1);
+	close(bakstdin);
+	close(bakstdout);
 //	ft_make_dup(bakstdin, 0);
 //	ft_make_dup(bakstdout, 1);
 }
-
-/*
-static void ft_close_fds(t_command *cmds, int start, int nbcmd)
-{
-	while (start < nbcmd)
-	{
-		close(cmds[start].fdin);
-		close(cmds[start].fdout);
-		start++;
-	}
-}*/
 
 static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 {
@@ -60,16 +51,12 @@ static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nb
 		pids[i] = fork();
 		if (pids[i] == 0)
 		{
-//			ft_close_fds(cmds, i + 1, nbcmd);
-//			ft_make_dup(cmds[i].fdin, 0);
-//			ft_make_dup(cmds[i].fdout, 1);
-			
 			ft_prep_dup(cmds, i, nbcmd);
 
 			ft_search_command(&cmds[i], bt, envp, 1);
 			free(pids);
-//			close(cmds[i].fdin);
-//			close(cmds[i].fdout);
+			close(cmds[i].fdin);
+			close(cmds[i].fdout);
 			ft_free_commands(cmds, nbcmd);
 			ft_free_builtins(bt);
 			exit(1);
