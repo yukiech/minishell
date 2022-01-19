@@ -57,4 +57,5 @@ void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 			close(cmds[i].fdout);		
 		i++;
 	}
+	ft_free_commands(cmds, nbcmd);
 }

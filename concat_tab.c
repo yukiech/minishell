@@ -10,7 +10,7 @@ int	ft_concat_tab(char ***ptr, char *new)
 	while ((*ptr) != NULL && (*ptr)[count] != NULL)
 		count++;
 
-	newptr = malloc(sizeof(char *) * (count + 2));
+	newptr = ft_calloc(count + 2, sizeof(char *));
 	newptr[count + 1] = NULL;
 	newptr[count] = new;
 

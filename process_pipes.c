@@ -16,11 +16,15 @@ void	ft_process_pipes(char *line, t_builtin *bt, char **envp)
 	while (parts[i] != NULL)
 	{
 		if (ft_strncmp(parts[i], "|", 2) == 0)
+		{
+			free(parts[i]);
 			cmd_i++;
+		}
 		else
 			commands[cmd_i].nbarg = ft_concat_tab(&commands[cmd_i].args, parts[i]);
 		i++;
 	}
+	free(parts);
 	ft_process_commands(commands, bt, envp, cmd_i + 1);
 }
 
@@ -38,6 +42,7 @@ void	ft_free_commands(t_command *cmds, int nbcmd)
 			free(cmds[i].args[j]);
 			j++;
 		}
+		free(cmds[i].args);
 		i++;
 	}
 	free(cmds);
