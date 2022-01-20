@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static void ft_unite_path(char **base, char *path);
+static void	ft_unite_path(char **base, char *path);
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp);
 static void	free_default(char **path_splitted);
 
@@ -8,21 +8,19 @@ void	builtin_default(t_command cmd, char **envp)
 {
 	char	*path;
 	char	**path_splitted;
-	char 	pwd[PATH_MAX];
+	char	pwd[PATH_MAX];
 	char	*add_cmd;
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	path = getenv("PATH");
 	path_splitted = ft_split(path, ':');
-	//free(path);
 	add_cmd = ft_strjoin("/", cmd.args[0]);
 	while (path_splitted[i] != NULL)
 	{
 		ft_unite_path(&path_splitted[i], add_cmd);
 		i++;
 	}
-	
 	if (ft_strlen(cmd.args[0]) > 0 && cmd.args[0][0] == '/')
 		ft_concat_tab(&path_splitted, cmd.args[0]);
 	else
@@ -36,9 +34,9 @@ void	builtin_default(t_command cmd, char **envp)
 	free_default(path_splitted);
 }
 
-static void ft_unite_path(char **base, char *path)
+static void	ft_unite_path(char **base, char *path)
 {
-	char *temp;
+	char	*temp;
 
 	temp = ft_strjoin(*base, path);
 	free(*base);
@@ -55,12 +53,11 @@ static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
 		if ((access(path_splitted[i], F_OK)) == 0)
 		{
 			execve(path_splitted[i], cmd.args, envp);
-			return(0);
+			return (0);
 		}
 		else
 			i++;
 	}
-
 	return (1);
 }
 
