@@ -28,7 +28,7 @@ void	builtin_cd(t_command cmd, char **envp)
 	}
 	else
 	{
-		temp = ft_get_env(cmd, envp, "HOME");
+		temp = ft_get_env(envp, "HOME");
 		error = chdir(temp);
 		free(temp);
 	}

@@ -12,14 +12,13 @@
 
 #include "minishell.h"
 
-char	*ft_get_env(t_command cmd, char **envp, char *asked_var)
+char	*ft_get_env(char **envp, char *asked_var)
 {
 	int		i;
 	size_t	i2;
 	int		i3;
 	char	*var_value;
 
-	(void)cmd;
 	i = 0;
 	i3 = 0;
 	while (envp[i])
