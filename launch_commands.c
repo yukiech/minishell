@@ -23,7 +23,7 @@ void	ft_launch_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 	{
 		ft_single_start(cmds, bt, envp);
 	}
-	else
+	else if (nbcmd > 2)
 	{
 		ft_fork_commands(cmds, bt, envp, nbcmd);
 	}
@@ -34,14 +34,17 @@ static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp)
 	int	bakstdin;
 	int	bakstdout;
 
-	bakstdin = dup(0);
-	bakstdout = dup(0);
-	ft_prep_dup(cmds, 0, 1);
-	ft_search_command(cmds, bt, envp, 0);
-	dup2(bakstdin, 0);
-	dup2(bakstdout, 1);
-	close(bakstdin);
-	close(bakstdout);
+	if (cmds[0].nbarg > 0)
+	{
+		bakstdin = dup(0);
+		bakstdout = dup(1);
+		ft_prep_dup(cmds, 0, 1);
+		ft_search_command(cmds, bt, envp, 0);
+		dup2(bakstdin, 0);
+		dup2(bakstdout, 1);
+		close(bakstdin);
+		close(bakstdout);
+	}
 }
 
 static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
