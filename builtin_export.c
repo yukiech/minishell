@@ -45,6 +45,7 @@ void	builtin_export(t_command cmd, char **envp)
 	int	exists;
 	char	*new_var;
 
+	exists = 0;
 	new_var = ft_strdup(cmd.args[1]);
 	i = 0;
 	if (invalid_var(cmd, envp) == 0)
