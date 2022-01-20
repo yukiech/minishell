@@ -7,7 +7,7 @@ t_builtin *builtin_tab()
 	t_builtin	*tab;
 
 	tab = malloc(sizeof(t_builtin));
-	tab->nb = 4;
+	tab->nb = 5;
 
 	tab->cmds = malloc(sizeof(t_builtin_cmd *) * tab->nb);
 
@@ -15,6 +15,7 @@ t_builtin *builtin_tab()
 	tab->cmds[1] = new_builtin("pwd", &builtin_pwd);
 	tab->cmds[2] = new_builtin("env", &builtin_env);
 	tab->cmds[3] = new_builtin("echo", &builtin_echo);
+	tab->cmds[4] = new_builtin("export", &builtin_export);
 
 	return (tab);
 }

@@ -103,4 +103,7 @@ void	builtin_env(t_command cmd, char **envp);
 //builtin_echo.c
 void	builtin_echo(t_command cmd, char **envp);
 
+//builtin_export.c
+void	builtin_export(t_command cmd, char **envp);
+
 #endif
