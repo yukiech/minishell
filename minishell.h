@@ -106,4 +106,7 @@ void	builtin_echo(t_command cmd, char **envp);
 //builtin_export.c
 void	builtin_export(t_command cmd, char **envp);
 
+//builtin_unset.c
+void	builtin_unset(t_command cmd, char **envp);
+
 #endif
