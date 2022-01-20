@@ -2,7 +2,7 @@
 
 static t_builtin_cmd *new_builtin(char *name, void (*f)(t_command, char **));
 
-t_builtin *builtin_tab()
+t_builtin *builtin_tab(void)
 {
 	t_builtin	*tab;
 

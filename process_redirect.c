@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*   CoinCoinShell.c                      __                        __        */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 16:49:18 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir);
-static void ft_concat_file(t_command *cmd, char *filename, int flags);
+static void	ft_concat_file(t_command *cmd, char *filename, int flags);
 static void	ft_heredoc(t_command *cmd, int *sign_i);
 static void	ft_free_redirect(t_command *cmd, int todel);
 
@@ -54,15 +66,14 @@ static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir)
 		cmd->fdout = open(cmd->args[*sign_i + 1], flags, FILE_PERM);
 		printf("[open] _%s_\n", cmd->args[*sign_i + 1]);
 	}
-
 	ft_free_redirect(cmd, *sign_i);
 	(*sign_i)--;
 }
 
-static void ft_concat_file(t_command *cmd, char *filename, int flags)
+static void	ft_concat_file(t_command *cmd, char *filename, int flags)
 {
-	int	pip[2];
-	char *line;
+	int		pip[2];
+	char	*line;
 
 	pipe(pip);
 	line = get_next_line(cmd->fdin);
@@ -88,8 +99,8 @@ static void ft_concat_file(t_command *cmd, char *filename, int flags)
 
 static void	ft_heredoc(t_command *cmd, int *sign_i)
 {
-	int pip[2];
-	char *line;
+	int		pip[2];
+	char	*line;
 
 	pipe(pip);
 	line = NULL;
@@ -98,7 +109,8 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 		ft_putstr_fd("> ", 1);
 		line = get_next_line(0);
 		line[ft_strlen(line) - 1] = '\0';
-		if (ft_strncmp(line, cmd->args[*sign_i + 1], ft_strlen(cmd->args[*sign_i + 1]) + 1) == 0)
+		if (ft_strncmp(line, cmd->args[*sign_i + 1],
+				ft_strlen(cmd->args[*sign_i + 1]) + 1) == 0)
 			break ;
 		ft_putendl_fd(line, pip[1]);
 		free(line);
@@ -106,11 +118,9 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 	if (line != NULL)
 		free(line);
 	close(pip[1]);
-
 	if (cmd->fdin != -1)
 		close(cmd->fdin);
 	cmd->fdin = pip[0];
-
 	ft_free_redirect(cmd, *sign_i);
 }
 
@@ -125,5 +135,5 @@ static void	ft_free_redirect(t_command *cmd, int todel)
 	}
 	cmd->args[todel] = NULL;
 	cmd->args[todel + 1] = NULL;
-	cmd->nbarg-=2;
+	cmd->nbarg -= 2;
 }

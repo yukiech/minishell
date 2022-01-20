@@ -23,14 +23,14 @@ int	invalid_var(t_command cmd, char **envp)
 	result = 0;
 	if (cmd.args[1][0] == '=' || cmd.args[1][0] == '/')
 	{
-		printf("bash: export: `%s': not a valid identifier", cmd.args[1]);
+		printf("CoinCoinShell: export: `%s': not a valid identifier", cmd.args[1]);
 		result = 1;
 	}
 	while (cmd.args[1][i] != '=')
 	{
 		if (cmd.args[1][i] == '/')
 		{
-			printf("bash: export: `%s': not a valid identifier", cmd.args[1]);
+			printf("CoinCoinShell: export: `%s': not a valid identifier", cmd.args[1]);
 			result = 1;
 		}
 		i++;

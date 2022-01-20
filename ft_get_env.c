@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 17:14:47 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*ft_get_env(t_command cmd, char **envp, char *asked_var)
 {
-	int	i;
-	int	i2;
-	int	i3;
+	int		i;
+	int		i2;
+	int		i3;
 	char	*var_value;
 
 	i = 0;
@@ -17,7 +29,7 @@ char	*ft_get_env(t_command cmd, char **envp, char *asked_var)
 			i2 = ft_strlen(asked_var) - 1;
 			while (i2 < ft_strlen(envp[i]))
 			{
-				var_value[i3]  = envp[i][i2];
+				var_value[i3] = envp[i][i2];
 				i3++;
 				i2++;
 			}

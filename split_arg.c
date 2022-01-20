@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   split_arg.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jjaqueme <marvin@42lausanne.ch>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 12:39:51 by jjaqueme          #+#    #+#             */
-/*   Updated: 2021/10/18 18:17:14 by jjaqueme         ###   ########.fr       */
+/*   CoinCoinShell.c                      __                        __        */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 16:42:59 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ static void	ft_decide_split(const char *s, int *i, t_spliter *sp, char ***ptr)
 		ft_cut_add(s, *i, &sp->start_i, ptr);
 		(*i)--;
 	}
-	else if (sp->inside == 0 && !ft_isspace(s[*i])/* && sp->quote == 0*/)
+	else if (sp->inside == 0 && !ft_isspace(s[*i]))
 		sp->inside = 1;
-	else if (sp->inside == 1 && ft_isspace(s[*i])/* && sp->quote == 0*/)
+	else if (sp->inside == 1 && ft_isspace(s[*i]))
 		sp->inside = 0;
 }
 
@@ -113,4 +113,3 @@ static void	ft_cut_add(const char *s, int i, int *start_i, char ***ptr)
 	*ptr = newptr;
 	*start_i = i;
 }
-

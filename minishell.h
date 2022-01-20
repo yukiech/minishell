@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 17:03:47 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -16,8 +28,8 @@
 //PATH_MAX
 # include <limits.h>
 //waitpids
-#include <sys/types.h>
-#include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 // # include <readline/readline.h>
 // # include "~/.brew/opt/readline/include/readline/history.h"
@@ -28,21 +40,19 @@
 //Libft, gnl, ft_printf
 # include <mylibft.h>
 
-
 # define FILE_PERM S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
 
 typedef struct s_command {
-	int	nbarg;
-	int	fdin;
-	int	fdout;
-	char **args;
+	int		nbarg;
+	int		fdin;
+	int		fdout;
+	char	**args;
 }	t_command;
-
 
 //Store "cd" -> "cd_function"
 typedef struct s_builtin_cmd {
-	char *name;
-	void (*function)(t_command, char **);
+	char	*name;
+	void	(*function)(t_command, char **);
 }	t_builtin_cmd;
 
 //Store x functions and x
@@ -51,31 +61,28 @@ typedef struct s_builtin {
 	t_builtin_cmd	**cmds;
 }	t_builtin;
 
-
-
-
 //main.c
-int	main(int argc, char **argv, char **envp);
-
+int			main(int argc, char **argv, char **envp);
 
 //ft_concat_tab.c
-int	ft_concat_tab(char ***ptr, char *new);
+int			ft_concat_tab(char ***ptr, char *new);
 
+void		ft_process_pipes(char *line, t_builtin *bt, char **envp);
+void		ft_free_commands(t_command *cmds, int nbcmd);
 
-void   ft_process_pipes(char *line, t_builtin *bt, char **envp);
-void   ft_free_commands(t_command *cmds, int nbcmd);
+void		ft_process_commands(t_command *cmds,
+				t_builtin *bt, char **envp, int nbcmd);
 
-void	ft_process_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
+void		ft_process_redirect(t_command *cmds, int nbcmd);
+void		ft_process_fds(t_command *cmds, int nbcmd);
+void		ft_launch_commands(t_command *cmds,
+				t_builtin *bt, char **envp, int nbcmd);
+void		ft_search_command(t_command *cmds,
+				t_builtin *bt, char **envp, int forked);
 
-void	ft_process_redirect(t_command *cmds, int nbcmd);
-void	ft_process_fds(t_command *cmds, int nbcmd);
-void	ft_launch_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
-void	ft_search_command(t_command *cmds, t_builtin *bt, char **envp, int forked);
-
-//functions.c
-t_builtin		*builtin_tab();
-void			ft_free_builtins(t_builtin *tab);
-
+//builtin_manage.c
+t_builtin	*builtin_tab(void);
+void		ft_free_builtins(t_builtin *tab);
 
 //ft_split_arg.c
 typedef struct t_spliter {
@@ -85,30 +92,29 @@ typedef struct t_spliter {
 	int	quote;
 }	t_spliter;
 
-char	**ft_split_arg(const char *s);
-
+char		**ft_split_arg(const char *s);
 
 //builtin_default.c
-void	builtin_default(t_command cmd, char **envp);
+void		builtin_default(t_command cmd, char **envp);
 
 //builtin_cd.c
-void	builtin_cd(t_command cmd, char **envp);
+void		builtin_cd(t_command cmd, char **envp);
 
 //builtin_pwd.c
-void	builtin_pwd(t_command cmd, char **envp);
+void		builtin_pwd(t_command cmd, char **envp);
 
 //builtin_env.c
-void	builtin_env(t_command cmd, char **envp);
+void		builtin_env(t_command cmd, char **envp);
 
 //builtin_echo.c
-void	builtin_echo(t_command cmd, char **envp);
+void		builtin_echo(t_command cmd, char **envp);
 
 //builtin_export.c
-void	builtin_export(t_command cmd, char **envp);
+void		builtin_export(t_command cmd, char **envp);
 
 //builtin_unset.c
-void	builtin_unset(t_command cmd, char **envp);
+void		builtin_unset(t_command cmd, char **envp);
 
 //ft_get_env.c
-char	*ft_get_env(t_command cmd, char **envp, char *var);
+char		*ft_get_env(t_command cmd, char **envp, char *var);
 #endif

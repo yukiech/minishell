@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 17:12:54 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp);
@@ -20,23 +32,16 @@ void	ft_launch_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
 static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp)
 {
 	int	bakstdin;
-	int bakstdout;
+	int	bakstdout;
 
 	bakstdin = dup(0);
 	bakstdout = dup(0);
-
 	ft_prep_dup(cmds, 0, 1);
-
-//	ft_make_dup(cmds[0].fdin, 0);
-//	ft_make_dup(cmds[0].fdout, 1);
 	ft_search_command(cmds, bt, envp, 0);
-
 	dup2(bakstdin, 0);
 	dup2(bakstdout, 1);
 	close(bakstdin);
 	close(bakstdout);
-//	ft_make_dup(bakstdin, 0);
-//	ft_make_dup(bakstdout, 1);
 }
 
 static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
@@ -52,7 +57,6 @@ static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nb
 		if (pids[i] == 0)
 		{
 			ft_prep_dup(cmds, i, nbcmd);
-
 			ft_search_command(&cmds[i], bt, envp, 1);
 			free(pids);
 			close(cmds[i].fdin);
@@ -96,7 +100,7 @@ static void	ft_prep_dup(t_command *cmds, int i, int nbcmd)
 static void	ft_wait_forks(int *pids, int nbcmd)
 {
 	int	i;
-	int status;
+	int	status;
 
 	i = 0;
 	while (i < nbcmd)
