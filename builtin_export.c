@@ -18,7 +18,8 @@ int	invalid_var(t_command cmd, char **envp)
 {
 	int	i;
 	int	result;
-	
+
+	(void)envp;	
 	i = 0;
 	result = 0;
 	if (cmd.args[1][0] == '=' || cmd.args[1][0] == '/')

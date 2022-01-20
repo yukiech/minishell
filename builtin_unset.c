@@ -6,7 +6,6 @@ void	builtin_unset(t_command cmd, char **envp)
 {
 	int	i;
 	char	*var_temp;
-	int	exists;
 
 	i = 0;
 	var_temp = cmd.args[1];
