@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 18:31:29 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	builtin_echo(t_command cmd, char **envp)
 {
-	(void)cmd;
-	(void)envp;
 	int	newline;
 	int	i;
 
+	(void)envp;
 	newline = 0;
 	i = 1;
 	if (i < cmd.nbarg && ft_strncmp(cmd.args[i], "-n", 2) == 0)

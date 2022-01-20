@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*   CoinCoinShell.c                      __                        __        */
-/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*   process_redirect.c                                 :+:      :+:    :+:   */
 /*                                   \\ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 16:49:18 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/20 18:29:48 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	ft_concat_file(t_command *cmd, char *filename, int flags)
 	}
 	close(cmd->fdin);
 	close(pip[1]);
-	cmd->fdin = pip[0];		
+	cmd->fdin = pip[0];
 }
 
 static void	ft_heredoc(t_command *cmd, int *sign_i)

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*   builtin_manage.c                                   :+:      :+:    :+:   */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 18:31:57 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static	t_builtin_cmd *new_builtin(char *name, void (*f)(t_command, char **));
+static t_builtin_cmd	*new_builtin(char *name, void (*f)(t_command, char **));
 
 t_builtin	*builtin_tab(void)
 {
@@ -32,7 +44,7 @@ void	ft_free_builtins(t_builtin *tab)
 	free(tab);
 }
 
-static	t_builtin_cmd *new_builtin(char *name, void (*f)(t_command, char **))
+static t_builtin_cmd	*new_builtin(char *name, void (*f)(t_command, char **))
 {
 	t_builtin_cmd	*new;
 

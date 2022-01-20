@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 18:06:54 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/20 18:28:53 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 char	*ft_get_env(t_command cmd, char **envp, char *asked_var)
 {
 	int		i;
-	size_t		i2;
+	size_t	i2;
 	int		i3;
-	char		*var_value;
+	char	*var_value;
 
 	(void)cmd;
 	i = 0;

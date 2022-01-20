@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                        __                        __        */
+/*   builtin_export.c                                   :+:      :+:    :+:   */
+/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*   By: CoinCoinTheRetour             `---'                        `---'     */
+/*                                                                            */
+/*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
+/*   Updated: 2022/01/20 18:30:41 by ahuber           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	search_for_equal(char *str)
@@ -5,13 +17,13 @@ static int	search_for_equal(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '=')
 			return (i);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 int	invalid_var(t_command cmd, char **envp)
@@ -19,7 +31,7 @@ int	invalid_var(t_command cmd, char **envp)
 	int	i;
 	int	result;
 
-	(void)envp;	
+	(void)envp;
 	i = 0;
 	result = 0;
 	if (cmd.args[1][0] == '=' || cmd.args[1][0] == '/')
@@ -41,8 +53,8 @@ int	invalid_var(t_command cmd, char **envp)
 
 void	builtin_export(t_command cmd, char **envp)
 {
-	int	i;
-	int	exists;
+	int		i;
+	int		exists;
 	char	*new_var;
 
 	exists = 0;
