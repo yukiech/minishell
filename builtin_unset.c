@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 void	builtin_unset(t_command cmd, char **envp)
 {
 	int	i;
@@ -9,7 +7,7 @@ void	builtin_unset(t_command cmd, char **envp)
 
 	i = 0;
 	var_temp = cmd.args[1];
-	while(envp[i])
+	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], var_temp, ft_strlen(var_temp)) == 0)
 		{
