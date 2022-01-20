@@ -15,6 +15,8 @@
 # include <signal.h>
 //PATH_MAX
 # include <limits.h>
+//terminal functions
+# include <termios.h>
 //waitpids
 #include <sys/types.h>
 #include <sys/wait.h>
