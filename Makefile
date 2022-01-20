@@ -22,8 +22,7 @@ AR			= ar rcs
 CP			= cp -f
 RM			= rm -f
 
-CFLAGS		=
-CFLAGS2		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 
 HEADS		= -I. -I${LIBFT} -I${HOME}/.brew/Cellar/readline/8.1.1/include/
 
