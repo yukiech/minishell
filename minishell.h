@@ -118,5 +118,5 @@ void		builtin_export(t_command cmd, char **envp);
 void		builtin_unset(t_command cmd, char **envp);
 
 //ft_get_env.c
-char		*ft_get_env(t_command cmd, char **envp, char *var);
+char		*ft_get_env(char **envp, char *var);
 #endif
