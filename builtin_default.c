@@ -1,23 +1,48 @@
 #include "minishell.h"
 
-static void	free_default(char **path_splitted, char **path_splitted_cmd)
-{
-	int	i;
+static void ft_unite_path(char **base, char *path);
+static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp);
+static void	free_default(char **path_splitted);
 
+void	builtin_default(t_command cmd, char **envp)
+{
+	char	*path;
+	char	**path_splitted;
+	char 	pwd[PATH_MAX];
+	char	*add_cmd;
+	int	i;
+	
 	i = 0;
-	while (path_splitted[i])
+	path = getenv("PATH");
+	path_splitted = ft_split(path, ':');
+	//free(path);
+	add_cmd = ft_strjoin("/", cmd.args[0]);
+	while (path_splitted[i] != NULL)
 	{
-		free(path_splitted[i]);
+		ft_unite_path(&path_splitted[i], add_cmd);
 		i++;
 	}
-	i = 0;
-	while (path_splitted_cmd[i])
+	
+	if (ft_strlen(cmd.args[0]) > 0 && cmd.args[0][0] == '/')
+		ft_concat_tab(&path_splitted, cmd.args[0]);
+	else
 	{
-		free(path_splitted_cmd[i]);
-		i++;
+		getcwd(pwd, PATH_MAX);
+		ft_concat_tab(&path_splitted, ft_strdup(pwd));
+		ft_unite_path(&path_splitted[i], add_cmd);
 	}
-	free(path_splitted);
-	free(path_splitted_cmd);
+	free(add_cmd);
+	test_and_exec_cmd(path_splitted, cmd, envp);
+	free_default(path_splitted);
+}
+
+static void ft_unite_path(char **base, char *path)
+{
+	char *temp;
+
+	temp = ft_strjoin(*base, path);
+	free(*base);
+	*base = temp;
 }
 
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
@@ -39,27 +64,15 @@ static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
 	return (1);
 }
 
-void	builtin_default(t_command cmd, char **envp)
+static void	free_default(char **path_splitted)
 {
-	char	*path;
-	char	**path_splitted;
-	char	**path_splitted_cmd;
-	char	*add_cmd;
 	int	i;
-	
+
 	i = 0;
-	path = getenv("PATH");
-	path_splitted = ft_split(path, ':');
-	add_cmd = ft_strjoin("/", cmd.args[0]);
-	while (path_splitted[i] != NULL)
+	while (path_splitted[i])
 	{
-		char 	*temp;	
-		temp = ft_strjoin(path_splitted[i], add_cmd);
-	//	free(path_splitted[i]);
-		path_splitted_cmd[i] = temp;
+		free(path_splitted[i]);
 		i++;
-	
 	}
-	test_and_exec_cmd(path_splitted_cmd, cmd, envp);
-	free_default(path_splitted, path_splitted_cmd);
+	free(path_splitted);
 }
