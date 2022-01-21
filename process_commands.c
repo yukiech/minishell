@@ -19,6 +19,11 @@ void	ft_process_commands(t_command *cmds,
 //	int	j;
 
 	ft_process_redirect(cmds, nbcmd);
+	if (cmds[0].fdin == -1)
+		cmds[0].fdin = 0;
+	if (cmds[nbcmd - 1].fdout == -1)
+		cmds[nbcmd - 1].fdout = 1;
+
 	process_quote(cmds, nbcmd);
 	process_dollar(cmds, envp, nbcmd);
 /*	i = 0;

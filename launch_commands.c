@@ -50,14 +50,14 @@ static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp)
 }
 
 static void	ft_fork_commands(t_command *cmds,
-				t_builtin *bt, char **envp, int nbcmd)
+		t_builtin *bt, char **envp, int nbcmd)
 {
 	int	i;
 	int	*pids;
 
 	pids = ft_calloc(nbcmd, sizeof(int));
-	i = 0;
-	while (i < nbcmd)
+	i = -1;
+	while (++i < nbcmd)
 	{
 		pids[i] = fork();
 		if (pids[i] == 0)
@@ -75,7 +75,6 @@ static void	ft_fork_commands(t_command *cmds,
 			close(cmds[i].fdin);
 		if (cmds[i].fdout != 1)
 			close(cmds[i].fdout);
-		i++;
 	}
 	ft_wait_forks(pids, nbcmd);
 }

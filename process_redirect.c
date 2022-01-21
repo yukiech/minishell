@@ -42,10 +42,6 @@ void	ft_process_redirect(t_command *cmds, int nbcmd)
 		}
 		i++;
 	}
-	if (cmds[0].fdin == -1)
-		cmds[0].fdin = 0;
-	if (cmds[nbcmd - 1].fdout == -1)
-		cmds[nbcmd - 1].fdout = 1;
 }
 
 static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir)

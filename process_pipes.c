@@ -22,6 +22,7 @@ void	ft_process_pipes(char *line, t_builtin *bt, char **envp)
 	int			i;
 
 	parts = ft_split_arg(line);
+	free(line);
 	commands = ft_calloc(ft_count_pipes(parts) + 1, sizeof(t_command));
 	i = 0;
 	cmd_i = 0;

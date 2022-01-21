@@ -41,7 +41,7 @@ void	builtin_default(t_command cmd, char **envp)
 static void	ft_unite_all(char **path_splitted, char *path)
 {
 	char	*temp;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (path_splitted[i] != NULL)
@@ -54,7 +54,7 @@ static void	ft_unite_all(char **path_splitted, char *path)
 }
 
 static void	builtin_end(char *add_cmd,
-		 char **path_splitted, t_command cmd, char **envp)
+		char **path_splitted, t_command cmd, char **envp)
 {
 	int	i;
 
