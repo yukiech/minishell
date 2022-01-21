@@ -34,7 +34,7 @@ void	builtin_default(t_command cmd, char **envp)
 	}
 	ft_unite_all(path_splitted, add_cmd);
 	if (ft_strlen(cmd.args[0]) > 0 && cmd.args[0][0] == '/')
-		ft_concat_tab(&path_splitted, cmd.args[0]);
+		ft_concat_tab(&path_splitted, ft_strdup(cmd.args[0]));
 	builtin_end(add_cmd, path_splitted, cmd, envp);
 }
 
