@@ -23,9 +23,9 @@ void	ft_signal(int signo, int run)
 		running = 0;
 	if (run != -1)
 		return ;
-	proc = 1;
 	if (signo == SIGINT && proc == 0)
 	{
+		proc = 1;
 		rl_replace_line("", 0);
 		ft_putendl_fd("", 1);
 		if (running == 0)
