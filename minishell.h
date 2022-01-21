@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                        __                        __        */
-/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                   \\ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 16:04:46 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 21:36:24 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		builtin_env(t_command cmd, char **envp);
 void		builtin_echo(t_command cmd, char **envp);
 void		builtin_export(t_command cmd, char **envp);
 void		builtin_unset(t_command cmd, char **envp);
-void		builtin_exit(t_command cmd, char **envp);
+void		builtin_exit();
 
 //ft_split_arg.c
 typedef struct t_spliter {
