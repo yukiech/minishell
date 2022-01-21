@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                        __                        __        */
-/*   process_commands.c                                 :+:      :+:    :+:   */
-/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*                                    \ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 16:55:54 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 17:41:50 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_process_commands(t_command *cmds,
 //	int	j;
 
 	ft_process_redirect(cmds, nbcmd);
+	process_quote(cmds, nbcmd);
+	process_dollar(cmds, envp, nbcmd);
 /*	i = 0;
 	while (i < nbcmd)
 	{
