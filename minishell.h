@@ -94,6 +94,11 @@ typedef struct t_spliter {
 	int	quote;
 }	t_spliter;
 
+void coin_error2(char *err1, char *err2);
+void coin_error3(char *err1, char *err2, char *err3);
+void coin_error3m(char *err1, char *err2, char *err3);
+
+
 char		**ft_split_arg(const char *s);
 
 //builtin_default.c
