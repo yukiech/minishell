@@ -23,13 +23,20 @@ void	builtin_cd(t_command cmd, char **envp)
 	{
 		error = chdir(cmd.args[i]);
 		if (error == -1)
-			printf("CoinCoinShell: cd: %s: No such file or directory",
-				cmd.args[1]);
+			perror("CoinCoinShell: cd");
 	}
 	else
 	{
 		temp = ft_get_env(envp, "HOME=");
-		error = chdir(temp);
-		free(temp);
+		if (temp != NULL)
+		{
+			error = chdir(temp);
+			if (error == -1)
+				perror("CoinCoinShell: cd");
+			if (temp != NULL)
+				free(temp);
+		}
+		else
+			coin_error2("cd", "HOME not set");
 	}
 }

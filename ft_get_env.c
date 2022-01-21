@@ -19,6 +19,7 @@ char	*ft_get_env(char **envp, char *asked_var)
 	int		i3;
 	char	*var_value;
 
+	var_value = NULL;
 	i = 0;
 	i3 = 0;
 	while (envp[i])

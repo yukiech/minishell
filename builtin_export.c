@@ -36,16 +36,14 @@ int	invalid_var(t_command cmd, char **envp)
 	result = 0;
 	if (cmd.args[1][0] == '=' || cmd.args[1][0] == '/')
 	{
-		printf("CoinCoinShell: export: `%s': not a valid identifier",
-			cmd.args[1]);
+		coin_error3m("export: `", cmd.args[1], "': not a valid identifier");
 		result = 1;
 	}
 	while (cmd.args[1][i] != '=' && cmd.args[1][i])
 	{
 		if (cmd.args[1][i] == '/')
 		{
-			printf("CoinCoinShell: export: `%s': not a valid identifier",
-				cmd.args[1]);
+			coin_error3m("export: `", cmd.args[1], "': not a valid identifier");
 			result = 1;
 		}
 		if (i >= ft_strlen(cmd.args[1]) - 1)
