@@ -16,11 +16,10 @@ void	ft_process_commands(t_command *cmds,
 			t_builtin *bt, char **envp, int nbcmd)
 {
 	int	i;
-	int	j;
+//	int	j;
 
-	(void)envp;
 	ft_process_redirect(cmds, nbcmd);
-	i = 0;
+/*	i = 0;
 	while (i < nbcmd)
 	{
 		printf("[pre] %d fdin %d fdout %d  ", i, cmds[i].fdin, cmds[i].fdout);
@@ -32,9 +31,9 @@ void	ft_process_commands(t_command *cmds,
 		}
 		i++;
 		printf("\n");
-	}
+	}*/
 	ft_process_fds(cmds, nbcmd);
-	i = 0;
+/*	i = 0;
 	while (i < nbcmd)
 	{
 		printf("[cmd] %d fdin %d fdout %d  ", i, cmds[i].fdin, cmds[i].fdout);
@@ -46,7 +45,7 @@ void	ft_process_commands(t_command *cmds,
 		}
 		i++;
 		printf("\n");
-	}
+	}*/
 	ft_launch_commands(cmds, bt, envp, nbcmd);
 	i = 0;
 	while (i < nbcmd)
