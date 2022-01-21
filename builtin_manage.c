@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 18:31:57 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 15:57:55 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_builtin	*builtin_tab(void)
 	t_builtin	*tab;
 
 	tab = malloc(sizeof(t_builtin));
-	tab->nb = 6;
+	tab->nb = 7;
 	tab->cmds = malloc(sizeof(t_builtin_cmd *) * tab->nb);
 	tab->cmds[0] = new_builtin("cd", &builtin_cd);
 	tab->cmds[1] = new_builtin("pwd", &builtin_pwd);
@@ -27,6 +27,7 @@ t_builtin	*builtin_tab(void)
 	tab->cmds[3] = new_builtin("echo", &builtin_echo);
 	tab->cmds[4] = new_builtin("export", &builtin_export);
 	tab->cmds[5] = new_builtin("unset", &builtin_unset);
+	tab->cmds[6] = new_builtin("exit", &builtin_exit);
 	return (tab);
 }
 

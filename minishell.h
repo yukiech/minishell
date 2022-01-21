@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 17:03:47 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:04:46 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,13 @@ void		builtin_unset(t_command cmd, char **envp);
 
 //ft_get_env.c
 char		*ft_get_env(char **envp, char *var);
+
+//builtin_exit.c
+void		builtin_exit(t_command cmd, char **envp);
+
+//process_dollar.c
+void process_dollar(t_command *cmds, char **envp, int nbcmd);
+
+//process_quote.c
+void process_quote(t_command *cmds, int nbcmd);
 #endif

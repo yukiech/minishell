@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 21:57:39 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:30:25 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	builtin_default(t_command cmd, char **envp)
 }
 
 static void	bd_norme(char *add_cmd,
-		 char **path_splitted, t_command cmd, char **envp)
+		char **path_splitted, t_command cmd, char **envp)
 {
 	free(add_cmd);
 	test_and_exec_cmd(path_splitted, cmd, envp);

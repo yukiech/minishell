@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 08:06:10 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 10:32:01 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ int	invalid_var(t_command cmd, char **envp)
 	result = 0;
 	if (cmd.args[1][0] == '=' || cmd.args[1][0] == '/')
 	{
-		printf("CoinCoinShell: export: `%s': not a valid identifier", cmd.args[1]);
+		printf("CoinCoinShell: export: `%s': not a valid identifier",
+			cmd.args[1]);
 		result = 1;
 	}
 	while (cmd.args[1][i] != '=' && cmd.args[1][i])
 	{
 		if (cmd.args[1][i] == '/')
 		{
-			printf("CoinCoinShell: export: `%s': not a valid identifier", cmd.args[1]);
+			printf("CoinCoinShell: export: `%s': not a valid identifier",
+				cmd.args[1]);
 			result = 1;
 		}
 		if (i >= ft_strlen(cmd.args[1]) - 1)
