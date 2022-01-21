@@ -38,7 +38,7 @@ void	ft_signal(int signo, int run)
 		running = 0;
 		proc = 0;
 	}
-	else if (signo == SIGQUIT && proc == 0)
+	else if (signo == SIGQUIT && proc == 0 && running == 0)
 	{
 		proc = 1;
 		rl_on_new_line();
