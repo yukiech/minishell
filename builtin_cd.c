@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*   CoinCoinShell.c                      __                        __        */
-/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                   \\ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 16:41:27 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/20 22:27:59 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	builtin_cd(t_command cmd, char **envp)
 	}
 	else
 	{
-		temp = ft_get_env(envp, "HOME");
+		temp = ft_get_env(envp, "HOME=");
 		error = chdir(temp);
 		free(temp);
 	}

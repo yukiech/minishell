@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*   CoinCoinShell.c                      __                        __        */
-/*                                    ___( o)>      CoinCoin ?    <(o )___    */
+/*   search_command.c                                   :+:      :+:    :+:   */
 /*                                   \\ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 17:04:01 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 08:08:55 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_search_command(t_command *cmds, t_builtin *bt, char **envp, int forked)
+void	ft_search_command(t_command *cmds,
+			t_builtin *bt, char **envp, int forked)
 {
 	int	i;
 	int	pid;

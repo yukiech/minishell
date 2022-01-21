@@ -6,18 +6,20 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 18:07:16 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 08:08:02 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp);
-static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd);
+static void	ft_fork_commands(t_command *cmds,
+				t_builtin *bt, char **envp, int nbcmd);
 static void	ft_wait_forks(int *pids, int nbcmd);
 static void	ft_prep_dup(t_command *cmds, int i, int nbcmd);
 
-void	ft_launch_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
+void	ft_launch_commands(t_command *cmds,
+				t_builtin *bt, char **envp, int nbcmd)
 {
 	if (nbcmd == 1)
 	{
@@ -47,7 +49,8 @@ static void	ft_single_start(t_command *cmds, t_builtin *bt, char **envp)
 	}
 }
 
-static void	ft_fork_commands(t_command *cmds, t_builtin *bt, char **envp, int nbcmd)
+static void	ft_fork_commands(t_command *cmds,
+				t_builtin *bt, char **envp, int nbcmd)
 {
 	int	i;
 	int	*pids;

@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 21:41:55 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/21 08:06:10 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ int	invalid_var(t_command cmd, char **envp)
 	return (result);
 }
 
+void	envp_replace(char **envp, char *new_var, int i)
+{
+	envp[i] = new_var;
+	envp[i + 1] = NULL;
+}
+
 void	builtin_export(t_command cmd, char **envp)
 {
 	int		i;
@@ -74,10 +80,7 @@ void	builtin_export(t_command cmd, char **envp)
 			i++;
 		}
 		if (exists != 1)
-		{
-			envp[i] = new_var;
-			envp[i + 1] = NULL;
-		}
+			envp_replace(envp, new_var, i);
 		else
 			envp[i] = new_var;
 	}

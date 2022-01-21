@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 18:30:23 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/20 21:57:39 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	ft_unite_path(char **base, char *path);
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp);
 static void	free_default(char **path_splitted);
+static void	bd_norme(char *add_cmd,
+				char **path_splitted, t_command cmd, char **envp);
 
 void	builtin_default(t_command cmd, char **envp)
 {
@@ -41,6 +43,12 @@ void	builtin_default(t_command cmd, char **envp)
 		ft_concat_tab(&path_splitted, ft_strdup(pwd));
 		ft_unite_path(&path_splitted[i], add_cmd);
 	}
+	bd_norme(add_cmd, path_splitted, cmd, envp);
+}
+
+static void	bd_norme(char *add_cmd,
+		 char **path_splitted, t_command cmd, char **envp)
+{
 	free(add_cmd);
 	test_and_exec_cmd(path_splitted, cmd, envp);
 	free_default(path_splitted);
