@@ -1,7 +1,9 @@
-xSRCS_DIR	= ./
-SRCS_FILES	= main.c split_arg.c process_pipes.c process_commands.c process_redirect.c process_fds.c launch_commands.c search_command.c \
-		concat_tab.c builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c builtin_echo.c builtin_export.c \
-		builtin_unset.c ft_get_env.c coin_error.c builtin_exit.c process_dollar.c process_quote.c
+SRCS_DIR	= ./
+SRCS_FILES	= main.c main_utils.c split_arg.c concat_tab.c ft_get_env.c coin_error.c \
+	process_pipes.c process_commands.c process_redirect.c process_fds.c process_dollar.c process_quote.c \
+	launch_commands.c search_command.c \
+	builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c builtin_echo.c builtin_export.c builtin_unset.c  builtin_exit.c
+
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 BONUS_DIR	= ./

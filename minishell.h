@@ -33,16 +33,11 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-// # include <readline/readline.h>
-// # include "~/.brew/opt/readline/include/readline/history.h"
-
 # include <readline/readline.h>
 # include <readline/history.h>
 
 //Libft, gnl, ft_printf
 # include <mylibft.h>
-
-# define FILE_PERM S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH
 
 typedef struct s_command {
 	int		nbarg;
@@ -66,25 +61,55 @@ typedef struct s_builtin {
 //main.c
 int			main(int argc, char **argv, char **envp);
 
+//main_utils.c
+void		ft_signal(int signo, int run);
+void		ft_sig_handler(int signo);
+void		ft_set_termios(struct termios *saved);
+
 //ft_concat_tab.c
 int			ft_concat_tab(char ***ptr, char *new);
 
+//ft_process_pipes.c
 void		ft_process_pipes(char *line, t_builtin *bt, char **envp);
 void		ft_free_commands(t_command *cmds, int nbcmd);
 
+//process commands
 void		ft_process_commands(t_command *cmds,
 				t_builtin *bt, char **envp, int nbcmd);
 
 void		ft_process_redirect(t_command *cmds, int nbcmd);
+
 void		ft_process_fds(t_command *cmds, int nbcmd);
+
 void		ft_launch_commands(t_command *cmds,
 				t_builtin *bt, char **envp, int nbcmd);
+
 void		ft_search_command(t_command *cmds,
 				t_builtin *bt, char **envp, int forked);
+
+void		process_dollar(t_command *cmds, char **envp, int nbcmd);
+
+void		process_quote(t_command *cmds, int nbcmd);
 
 //builtin_manage.c
 t_builtin	*builtin_tab(void);
 void		ft_free_builtins(t_builtin *tab);
+
+//coin_error.c
+void		coin_error2(char *err1, char *err2);
+void		coin_error3(char *err1, char *err2, char *err3);
+void		coin_error3m(char *err1, char *err2, char *err3);
+
+char		*ft_get_env(char **envp, char *var);
+
+void		builtin_default(t_command cmd, char **envp);
+void		builtin_cd(t_command cmd, char **envp);
+void		builtin_pwd(t_command cmd, char **envp);
+void		builtin_env(t_command cmd, char **envp);
+void		builtin_echo(t_command cmd, char **envp);
+void		builtin_export(t_command cmd, char **envp);
+void		builtin_unset(t_command cmd, char **envp);
+void		builtin_exit(t_command cmd, char **envp);
 
 //ft_split_arg.c
 typedef struct t_spliter {
@@ -94,43 +119,6 @@ typedef struct t_spliter {
 	int	quote;
 }	t_spliter;
 
-void coin_error2(char *err1, char *err2);
-void coin_error3(char *err1, char *err2, char *err3);
-void coin_error3m(char *err1, char *err2, char *err3);
-
-
 char		**ft_split_arg(const char *s);
 
-//builtin_default.c
-void		builtin_default(t_command cmd, char **envp);
-
-//builtin_cd.c
-void		builtin_cd(t_command cmd, char **envp);
-
-//builtin_pwd.c
-void		builtin_pwd(t_command cmd, char **envp);
-
-//builtin_env.c
-void		builtin_env(t_command cmd, char **envp);
-
-//builtin_echo.c
-void		builtin_echo(t_command cmd, char **envp);
-
-//builtin_export.c
-void		builtin_export(t_command cmd, char **envp);
-
-//builtin_unset.c
-void		builtin_unset(t_command cmd, char **envp);
-
-//ft_get_env.c
-char		*ft_get_env(char **envp, char *var);
-
-//builtin_exit.c
-void		builtin_exit(t_command cmd, char **envp);
-
-//process_dollar.c
-void process_dollar(t_command *cmds, char **envp, int nbcmd);
-
-//process_quote.c
-void process_quote(t_command *cmds, int nbcmd);
 #endif
