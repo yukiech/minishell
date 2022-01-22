@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 17:44:52 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 10:11:20 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	process_quote(t_command *cmds, int nbcmd)
 		{
 			if (cmds[i].args[i2][i3] == '\'')
 			{
-				while (cmds[i].args[i2][i3 + 1] != '\'' && cmds[i].args[i2][i3 + 1])
+				while (cmds[i].args[i2][i3 + 1] != '\''
+						&& cmds[i].args[i2][i3 + 1])
 				{
 					cmds[i].args[i2][i3] = cmds[i].args[i2][i3 + 1];
 					i3++;
