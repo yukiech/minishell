@@ -2,11 +2,11 @@
 /*                                                                            */
 /*   CoinCoinShell.c                      __                        __        */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
-/*                                   \\ <_. )       CoinCoin !     ( ._> /    */
+/*                                    \ <_. )       CoinCoin !     ( ._> /    */
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 10:13:09 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 11:21:04 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ static void	update_both(char **envp, char *oldpwd)
 static void	builtin_cd_is_too_long(char **envp, char *temp_pwd, char *temp)
 {
 	if (chdir(temp) == -1)
-		perror("CoinCoinShell: cd");
+		coin_error_errno("cd");
 	if (temp != NULL)
 		free(temp);
 	update_both(envp, temp_pwd);
+	g_exit_stat = 0;
 }
 
 void	builtin_cd(t_command cmd, char **envp)
@@ -74,17 +75,18 @@ void	builtin_cd(t_command cmd, char **envp)
 	if (cmd.nbarg >= 2)
 	{
 		if (chdir(cmd.args[i]) == -1)
-			perror("CoinCoinShell: cd");
+			coin_error_errno("cd");
 		else
+		{
 			update_both(envp, temp_pwd);
+			g_exit_stat = 0;
+		}
 	}
 	else
 	{
 		temp = ft_get_env(envp, "HOME=");
 		if (temp != NULL)
-		{
 			builtin_cd_is_too_long(envp, temp_pwd, temp);
-		}
 		else
 			coin_error2("cd", "HOME not set");
 	}
