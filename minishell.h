@@ -41,7 +41,7 @@
 
 # include <sys/errno.h>
 
-# define VAR_END " \t\n\v\f\r$"
+# define VAR_END " \t\n\v\f\r$'"
 
 extern int	g_exit_stat;
 
