@@ -40,7 +40,7 @@ static void	ft_soft_concat(char **base, char *new)
 	}
 }
 
-static void	ft_parse_vars(char **arg, char **envp)
+static char	*ft_parse_vars(char **arg, char **envp)
 {
 	char	*res;
 	int		i;
@@ -53,25 +53,27 @@ static void	ft_parse_vars(char **arg, char **envp)
 	{
 		if ((*arg)[i] == '$')
 		{
-			ft_soft_concat(&res, ft_substr(*arg, oldi, i));
+			ft_soft_concat(&res, ft_substr(*arg, oldi, i - oldi));
 			i++;
 			oldi = i;
-			while (!ft_isspace((*arg)[i]) && i < (int)ft_strlen(*arg)
-				&& (*arg)[i] != '$')
+			while (ft_strchr(" \t\n\v\f\r$", (*arg)[i]) == NULL
+				&& i < (int)ft_strlen(*arg))
 				i++;
-			ft_soft_concat(&res, ft_get_var(ft_substr(*arg, oldi, i), envp));
+			ft_soft_concat(&res, ft_get_var(ft_substr(*arg, oldi, i - oldi), envp));
 			oldi = i;
+			if ((*arg)[i] == '$')
+				i--;
 		}
 	}
 	if (i > oldi)
 		ft_soft_concat(&res, ft_substr(*arg, oldi, i));
-	free(*arg);
-	*arg = res;
+	return (res);
 }
 
 static void	ft_process_arg(char **arg, char **envp)
 {
 	char	*res;
+	char	*temp;
 
 	if (*arg[0] == '\'')
 	{
@@ -86,7 +88,9 @@ static void	ft_process_arg(char **arg, char **envp)
 		free(*arg);
 		*arg = res;
 	}
-	ft_parse_vars(arg, envp);
+	temp = ft_parse_vars(arg, envp);
+	free(*arg);
+	*arg = temp;
 }
 
 void	process_dollar(t_command *cmds, char **envp, int nbcmd)
