@@ -24,7 +24,7 @@ AR			= ar rcs
 CP			= cp -f
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 
 HEADS		= -I. -I${LIBFT} -I${HOME}/.brew/Cellar/readline/8.1.1/include/
 
