@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 11:20:04 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 11:42:13 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	coin_error_errno(char *err1)
 	g_exit_stat = 1;
 	free(err2);
 }
-
 
 void	coin_error3(char *err1, char *err2, char *err3)
 {

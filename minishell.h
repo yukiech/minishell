@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 11:20:24 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 11:45:34 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@
 //Libft, gnl, ft_printf
 # include <mylibft.h>
 
-extern int g_exit_stat;
-extern int errno;
+# include <sys/errno.h>
+
+extern int	g_exit_stat;
 
 typedef struct s_command {
 	int		nbarg;
@@ -112,7 +113,7 @@ void		builtin_env(t_command cmd, char **envp);
 void		builtin_echo(t_command cmd, char **envp);
 void		builtin_export(t_command cmd, char **envp);
 void		builtin_unset(t_command cmd, char **envp);
-void		builtin_exit();
+void		builtin_exit(void);
 
 //ft_split_arg.c
 typedef struct t_spliter {
