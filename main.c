@@ -44,7 +44,6 @@ static void	ft_shell(t_builtin *builtins, char **envp)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		ft_signal(0, 0);
-		printf("dddd %d\n", g_exit_stat);
 		line = readline("CoinCoinShell-4.2$ ");
 		ft_signal(0, 1);
 		if (line != NULL && ft_strlen(line) == 0)

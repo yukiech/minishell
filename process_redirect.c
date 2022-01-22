@@ -46,21 +46,18 @@ void	ft_process_redirect(t_command *cmds, int nbcmd)
 
 static void	ft_manage_open(t_command *cmd, int *sign_i, int flags, int dir)
 {
-	printf("info %d %d\n", cmd->fdin, cmd->fdout);
 	if (dir == 0)
 	{
 		if (cmd->fdin == -1)
 			cmd->fdin = open(cmd->args[*sign_i + 1], flags);
 		else
 			ft_concat_file(cmd, cmd->args[*sign_i + 1], flags);
-		printf("[open] _%s_\n", cmd->args[*sign_i + 1]);
 	}
 	else if (dir == 1)
 	{
 		if (cmd->fdout != -1)
 			close(cmd->fdout);
 		cmd->fdout = open(cmd->args[*sign_i + 1], flags, 0644);
-		printf("[open] _%s_\n", cmd->args[*sign_i + 1]);
 	}
 	ft_free_redirect(cmd, *sign_i);
 	(*sign_i)--;
