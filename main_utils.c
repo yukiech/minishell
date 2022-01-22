@@ -6,13 +6,13 @@
 /*   By: */
 /**/
 /*   Created: 0000/00/00 00:00:00 by */
-/*   Updated: 0000/00/00 00:00:00 by */
+/*   Updated: 2022/01/22 11:47:15 by ahuber           ###   ########.fr       */
 /**/
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void ft_sig_sigint(int signo, int *proc, int *running)
+static void	ft_sig_sigint(int signo, int *proc, int *running)
 {
 	if (*proc == 0)
 	{
@@ -34,7 +34,7 @@ static void ft_sig_sigint(int signo, int *proc, int *running)
 	*proc = 0;
 }
 
-static void ft_sig_sigquit(int signo, int *proc, int *running)
+static void	ft_sig_sigquit(int signo, int *proc, int *running)
 {
 	if (*proc == 0)
 	{
