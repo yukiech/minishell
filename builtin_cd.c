@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 10:10:18 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 10:13:09 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	update_oldpwd(char **envp, char *oldpwd)
 		if (ft_strncmp(envp[i], "OLDPWD=", 7) == 0)
 		{
 			temp = ft_strjoin("OLDPWD=", oldpwd);
-			printf("replace by: %s\n", temp);
 			envp[i] = temp;
 		}
 		i++;
@@ -43,7 +42,6 @@ static void	update_pwd(char **envp)
 		{
 			getcwd(pwd, PATH_MAX);
 			temp = ft_strjoin("PWD=", pwd);
-			printf("replace by: %s\n", temp);
 			envp[i] = temp;
 		}
 		i++;
