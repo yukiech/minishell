@@ -118,6 +118,7 @@ static void	ft_heredoc(t_command *cmd, int *sign_i)
 		close(cmd->fdin);
 	cmd->fdin = pip[0];
 	ft_free_redirect(cmd, *sign_i);
+	(*sign_i)--;
 }
 
 static void	ft_free_redirect(t_command *cmd, int todel)
