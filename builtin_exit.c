@@ -12,13 +12,10 @@
 
 #include "minishell.h"
 
-void	free_all(void)
-{	
-}
-
-void	builtin_exit(void)
+void	builtin_exit(t_command *cmds, t_builtin *bt)
 {
-	free_all();
+	ft_free_builtins(bt);
+	ft_free_commands(cmds, 1);
 	ft_putendl_fd("exit", 1);
 	exit(0);
 }

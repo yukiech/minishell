@@ -113,7 +113,7 @@ void		builtin_env(t_command cmd, char **envp);
 void		builtin_echo(t_command cmd, char **envp);
 void		builtin_export(t_command cmd, char **envp);
 void		builtin_unset(t_command cmd, char **envp);
-void		builtin_exit(void);
+void		builtin_exit(t_command *cmds, t_builtin *bt);
 
 //ft_split_arg.c
 typedef struct t_spliter {
