@@ -64,6 +64,7 @@ typedef struct s_builtin {
 
 //main.c
 int			main(int argc, char **argv, char **envp);
+void		start_ascii(void);
 
 //main_utils.c
 void		ft_signal(int signo, int run);

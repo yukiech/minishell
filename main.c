@@ -24,6 +24,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	start_ascii();
 	builtins = builtin_tab();
 	ft_set_termios(&saved);
 	signal(SIGINT, ft_sig_handler);
