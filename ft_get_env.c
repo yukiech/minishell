@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 11:57:47 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 12:00:50 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	ft_get_env_too_long(int *i, int *i3, char **var_value)
 {
-	i = 0;
-	i3 = 0;
-	var_value = NULL;
+	*i = 0;
+	*i3 = 0;
+	*var_value = NULL;
 }
 
 char	*ft_get_env(char **envp, char *asked_var)

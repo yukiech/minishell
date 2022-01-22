@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/20 18:31:29 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 13:43:39 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	builtin_echo(t_command cmd, char **envp)
 	(void)envp;
 	newline = 0;
 	i = 1;
+	g_exit_stat = 0;
 	if (i < cmd.nbarg && ft_strncmp(cmd.args[i], "-n", 2) == 0)
 	{
 		newline = 1;
