@@ -114,6 +114,6 @@ static void	ft_wait_forks(int *pids, int nbcmd)
 		i++;
 	}
 	if (WIFEXITED(status))
-		printf("Child exit status: %d\n", WEXITSTATUS(status));
+		g_exit_stat = WEXITSTATUS(status);
 	free(pids);
 }

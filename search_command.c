@@ -27,7 +27,7 @@ void	ft_single_fork(t_command *cmds, t_builtin *bt, char **envp)
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		printf("Child hhhhh status: %d\n", WEXITSTATUS(status));
+		g_exit_stat =  WEXITSTATUS(status);
 }
 
 void	ft_search_command(t_command *cmds,
