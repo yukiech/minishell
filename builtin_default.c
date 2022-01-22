@@ -14,10 +14,10 @@
 
 static void	ft_unite_all(char **path_splitted, char *path);
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp);
-static void	builtin_end(char *add_cmd,
+static int	builtin_end(char *add_cmd,
 				char **path_splitted, t_command cmd, char **envp);
 
-void	builtin_default(t_command cmd, char **envp)
+int	builtin_default(t_command cmd, char **envp)
 {
 	char	*path;
 	char	**path_splitted;
@@ -35,7 +35,7 @@ void	builtin_default(t_command cmd, char **envp)
 	ft_unite_all(path_splitted, add_cmd);
 	if (ft_strlen(cmd.args[0]) > 0 && cmd.args[0][0] == '/')
 		ft_concat_tab(&path_splitted, ft_strdup(cmd.args[0]));
-	builtin_end(add_cmd, path_splitted, cmd, envp);
+	return (builtin_end(add_cmd, path_splitted, cmd, envp));
 }
 
 static void	ft_unite_all(char **path_splitted, char *path)
@@ -53,13 +53,14 @@ static void	ft_unite_all(char **path_splitted, char *path)
 	}
 }
 
-static void	builtin_end(char *add_cmd,
+static int	builtin_end(char *add_cmd,
 		char **path_splitted, t_command cmd, char **envp)
 {
 	int	i;
+	int	res;
 
 	free(add_cmd);
-	test_and_exec_cmd(path_splitted, cmd, envp);
+	res = test_and_exec_cmd(path_splitted, cmd, envp);
 	i = 0;
 	while (path_splitted[i])
 	{
@@ -67,6 +68,7 @@ static void	builtin_end(char *add_cmd,
 		i++;
 	}
 	free(path_splitted);
+	return (res);
 }
 
 static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
@@ -87,7 +89,7 @@ static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
 	if (path_splitted[i] == NULL)
 	{
 		coin_error2(cmd.args[0], "command not found");
-		exit(127);
+		return (127);
 	}	
-	return (1);
+	return (0);
 }

@@ -105,7 +105,7 @@ void		coin_error_errno(char *err1);
 
 char		*ft_get_env(char **envp, char *var);
 
-void		builtin_default(t_command cmd, char **envp);
+int			builtin_default(t_command cmd, char **envp);
 void		builtin_cd(t_command cmd, char **envp);
 void		builtin_pwd(t_command cmd, char **envp);
 void		builtin_env(t_command cmd, char **envp);

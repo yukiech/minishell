@@ -20,10 +20,10 @@ void	ft_single_fork(t_command *cmds, t_builtin *bt, char **envp)
 	pid = fork();
 	if (pid == 0)
 	{	
-		builtin_default(cmds[0], envp);
+		status = builtin_default(cmds[0], envp);
 		ft_free_builtins(bt);
 		ft_free_commands(cmds, 1);
-		exit(1);
+		exit(status);
 	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
