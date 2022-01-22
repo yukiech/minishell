@@ -25,7 +25,7 @@ void	ft_launch_commands(t_command *cmds,
 	{
 		ft_single_start(cmds, bt, envp);
 	}
-	else if (nbcmd > 2)
+	else if (nbcmd >= 2)
 	{
 		ft_fork_commands(cmds, bt, envp, nbcmd);
 	}
