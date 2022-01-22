@@ -38,8 +38,8 @@ void	ft_process_commands(t_command *cmds,
 		}
 		i++;
 		printf("\n");
-	}*/
-	ft_process_fds(cmds, nbcmd);
+	}
+*/	ft_process_fds(cmds, nbcmd);
 /*	i = 0;
 	while (i < nbcmd)
 	{
@@ -52,8 +52,8 @@ void	ft_process_commands(t_command *cmds,
 		}
 		i++;
 		printf("\n");
-	}*/
-	ft_launch_commands(cmds, bt, envp, nbcmd);
+	}
+*/	ft_launch_commands(cmds, bt, envp, nbcmd);
 	i = 0;
 	while (i < nbcmd)
 	{

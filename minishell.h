@@ -39,6 +39,8 @@
 //Libft, gnl, ft_printf
 # include <mylibft.h>
 
+extern int g_exit_stat;
+
 typedef struct s_command {
 	int		nbarg;
 	int		fdin;
@@ -64,7 +66,6 @@ int			main(int argc, char **argv, char **envp);
 //main_utils.c
 void		ft_signal(int signo, int run);
 void		ft_sig_handler(int signo);
-void		ft_set_termios(struct termios *saved);
 
 //ft_concat_tab.c
 int			ft_concat_tab(char ***ptr, char *new);

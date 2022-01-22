@@ -12,6 +12,44 @@
 
 #include "minishell.h"
 
+static void ft_sig_sigint(int signo, int *proc, int *running)
+{
+	if (*proc == 0)
+	{
+		*proc = 1;
+		rl_replace_line("", 0);
+		ft_putendl_fd("", 1);
+		if (*running == 0)
+		{	
+			rl_on_new_line();
+			rl_redisplay();
+			g_exit_stat = 1;
+		}
+		else
+		{
+			g_exit_stat = 128 + signo;
+		}
+		*running = 0;
+	}
+	*proc = 0;
+}
+
+static void ft_sig_sigquit(int signo, int *proc, int *running)
+{
+	if (*proc == 0)
+	{
+		*proc = 1;
+		rl_on_new_line();
+		rl_redisplay();
+		if (*running == 1)
+		{	
+			g_exit_stat = 128 + signo;
+		}
+		*running = 0;
+	}
+	*proc = 0;
+}
+
 void	ft_signal(int signo, int run)
 {
 	static int	proc = 0;
@@ -23,21 +61,10 @@ void	ft_signal(int signo, int run)
 		running = 0;
 	if (run != -1)
 		return ;
-	if (signo == SIGINT && proc == 0)
-	{
-		proc = 1;
-		rl_replace_line("", 0);
-		ft_putendl_fd("", 1);
-		if (running == 0)
-			rl_on_new_line();
-		if (running == 0)
-			rl_redisplay();
-		running = 0;
-	}
-	if (signo == SIGQUIT && proc == 0 && running == 0)
-		rl_on_new_line();
-	if (signo == SIGQUIT && proc == 0 && running == 0)
-		rl_redisplay();
+	if (signo == SIGINT)
+		ft_sig_sigint(signo, &proc, &running);
+	if (signo == SIGQUIT)
+		ft_sig_sigquit(signo, &proc, &running);
 	proc = 0;
 }
 

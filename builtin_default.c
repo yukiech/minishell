@@ -87,6 +87,7 @@ static int	test_and_exec_cmd(char **path_splitted, t_command cmd, char **envp)
 	if (path_splitted[i] == NULL)
 	{
 		coin_error2(cmd.args[0], "command not found");
+		exit(127);
 	}	
 	return (1);
 }

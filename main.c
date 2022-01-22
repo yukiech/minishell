@@ -6,13 +6,16 @@
 /*   By: */
 /**/
 /*   Created: 0000/00/00 00:00:00 by */
-/*   Updated: 0000/00/00 00:00:00 by */
+/*   Updated: 2022/01/22 10:43:38 by jjaqueme         ###   ########.fr       */
 /**/
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	ft_set_termios(struct termios *saved);
 static void	ft_shell(t_builtin *builtins, char **envp);
+
+int	g_exit_stat = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -56,4 +59,14 @@ static void	ft_shell(t_builtin *builtins, char **envp)
 		add_history(line);
 		ft_process_pipes(line, builtins, envp);
 	}	
+}
+
+static void	ft_set_termios(struct termios *saved)
+{
+	struct termios	attr;
+
+	tcgetattr(STDIN_FILENO, saved);
+	tcgetattr(STDIN_FILENO, &attr);
+	attr.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attr);
 }

@@ -12,11 +12,28 @@
 
 #include "minishell.h"
 
+void	ft_single_fork(t_command *cmds, t_builtin *bt, char **envp)
+{
+	int	status;
+	int	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{	
+		builtin_default(cmds[0], envp);
+		ft_free_builtins(bt);
+		ft_free_commands(cmds, 1);
+		exit(1);
+	}
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		printf("Child hhhhh status: %d\n", WEXITSTATUS(status));
+}
+
 void	ft_search_command(t_command *cmds,
 			t_builtin *bt, char **envp, int forked)
 {
 	int	i;
-	int	pid;
 
 	i = -1;
 	while (++i < bt->nb)
@@ -27,17 +44,7 @@ void	ft_search_command(t_command *cmds,
 			break ;
 	}
 	if (i == bt->nb && forked == 0)
-	{
-		pid = fork();
-		if (pid == 0)
-		{	
-			builtin_default(cmds[0], envp);
-			ft_free_builtins(bt);
-			ft_free_commands(cmds, 1);
-			exit(1);
-		}
-		waitpid(pid, NULL, 0);
-	}
+		ft_single_fork(cmds, bt, envp);
 	else if (i == bt->nb)
 		builtin_default(cmds[0], envp);
 }
