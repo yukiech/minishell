@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 21:36:24 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 11:20:24 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include <mylibft.h>
 
 extern int g_exit_stat;
+extern int errno;
 
 typedef struct s_command {
 	int		nbarg;
@@ -100,6 +101,7 @@ void		ft_free_builtins(t_builtin *tab);
 void		coin_error2(char *err1, char *err2);
 void		coin_error3(char *err1, char *err2, char *err3);
 void		coin_error3m(char *err1, char *err2, char *err3);
+void		coin_error_errno(char *err1);
 
 char		*ft_get_env(char **envp, char *var);
 
