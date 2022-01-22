@@ -24,6 +24,7 @@ void	ft_process_commands(t_command *cmds,
 		cmds[nbcmd - 1].fdout = 1;
 	process_dollar(cmds, envp, nbcmd);
 	ft_process_fds(cmds, nbcmd);
+	ft_launch_commands(cmds, bt, envp, nbcmd);
 	i = 0;
 	while (i < nbcmd)
 	{
