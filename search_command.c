@@ -43,7 +43,7 @@ void	ft_search_command(t_command *cmds,
 		if (ft_strcmp(cmds[0].args[0], bt->cmds[i]->name) == 0)
 			break ;
 	}
-	if (i == bt->nb && ft_strcmp(cmds[0].args[0],  "exit") == 0)
+	if (i == bt->nb && ft_strcmp(cmds[0].args[0], "exit") == 0)
 	{
 		builtin_exit(cmds, bt);
 		i++;

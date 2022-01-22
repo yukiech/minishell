@@ -69,7 +69,7 @@ static void	ft_fork_commands(t_command *cmds,
 			close(cmds[i].fdout);
 			ft_free_commands(cmds, nbcmd);
 			ft_free_builtins(bt);
-			exit(1);
+			exit(0);
 		}
 		if (cmds[i].fdin != 0)
 			close(cmds[i].fdin);
