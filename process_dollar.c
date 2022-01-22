@@ -47,21 +47,21 @@ static void	ft_parse_vars(char **arg, char **envp)
 	int		oldi;
 
 	oldi = 0;
-	i = 0;
+	i = -1;
 	res = ft_strdup("");
-	while (i < (int)ft_strlen(*arg))
+	while (++i < (int)ft_strlen(*arg))
 	{
 		if ((*arg)[i] == '$')
 		{
 			ft_soft_concat(&res, ft_substr(*arg, oldi, i));
 			i++;
 			oldi = i;
-			while (!ft_isspace((*arg)[i]) && i < (int)ft_strlen(*arg))
+			while (!ft_isspace((*arg)[i]) && i < (int)ft_strlen(*arg)
+				&& (*arg)[i] != '$')
 				i++;
 			ft_soft_concat(&res, ft_get_var(ft_substr(*arg, oldi, i), envp));
 			oldi = i;
 		}
-		i++;
 	}
 	if (i > oldi)
 		ft_soft_concat(&res, ft_substr(*arg, oldi, i));
