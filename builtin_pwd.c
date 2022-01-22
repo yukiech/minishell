@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 21:28:23 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 13:44:14 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	builtin_pwd(t_command cmd, char **envp)
 
 	(void)cmd;
 	(void)envp;
+	g_exit_stat = 0;
 	if (getcwd(pwd, PATH_MAX))
 	{
 		ft_putendl_fd(pwd, 1);

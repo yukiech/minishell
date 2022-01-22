@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/21 09:05:28 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 13:51:48 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	builtin_unset(t_command cmd, char **envp)
 
 	i = 0;
 	var_temp = cmd.args[1];
+	g_exit_stat = 0;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], var_temp, ft_strlen(var_temp)) == 0)

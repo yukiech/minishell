@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 11:21:04 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 14:07:26 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	builtin_cd_is_too_long(char **envp, char *temp_pwd, char *temp)
 	if (temp != NULL)
 		free(temp);
 	update_both(envp, temp_pwd);
-	g_exit_stat = 0;
 }
 
 void	builtin_cd(t_command cmd, char **envp)
@@ -71,6 +70,7 @@ void	builtin_cd(t_command cmd, char **envp)
 	char	temp_pwd[PATH_MAX];
 
 	i = 1;
+	g_exit_stat = 0;
 	getcwd(temp_pwd, PATH_MAX);
 	if (cmd.nbarg >= 2)
 	{

@@ -6,7 +6,7 @@
 /*   By: CoinCoinTheRetour             `---'                        `---'     */
 /*                                                                            */
 /*   Created: 2012/12/21 12:34:56 by CoinCoinTheRetour                        */
-/*   Updated: 2022/01/22 11:44:34 by ahuber           ###   ########.fr       */
+/*   Updated: 2022/01/22 13:42:53 by ahuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	builtin_export(t_command cmd, char **envp)
 	exists = 0;
 	new_var = ft_strdup(cmd.args[1]);
 	i = 0;
+	g_exit_stat = 0;
 	if (invalid_var(cmd, envp) == 0)
 	{
 		while (envp[i])
