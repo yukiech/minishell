@@ -66,8 +66,17 @@ static void	ft_make_splits(const char *s, char ***ptr)
 
 static void	ft_decide_split(const char *s, int *i, t_spliter *sp, char ***ptr)
 {
-	if (s[*i] == '\'' || s[*i] == '"' || sp->quote > 0)
+	if (s[*i] == '\'' || s[*i] == '"')
 	{
+		sp->quote = s[*i];
+		ft_cut_add(s, *i, &sp->start_i, ptr);
+		sp->start_i = (*i);
+		while (s[*i] != sp->quote)
+			(*i)++;
+		ft_cut_add(s, *i, &sp->start_i, ptr);
+		(*i)--;
+
+/*
 		if (sp->quote == 0 && s[*i] == '"')
 			sp->quote = s[*i];
 		else if (sp->quote == 0 && s[*i] == '\'')
@@ -75,6 +84,7 @@ static void	ft_decide_split(const char *s, int *i, t_spliter *sp, char ***ptr)
 		else if (s[*i] == sp->quote)
 			sp->quote = 0;
 		sp->inside = 1;
+*/		printf(" c == %c, quo == %c\n", s[*i], sp->quote);
 	}
 	else if (ft_strchr("<>|&", s[*i]) != NULL)
 	{
@@ -95,6 +105,8 @@ static void	ft_cut_add(const char *s, int i, int *start_i, char ***ptr)
 {
 	int		count;
 	char	**newptr;
+
+	printf("CUT\n" );
 
 	if (i - *start_i <= 0 || *start_i == -1 || ft_isspace(s[*start_i]))
 		return ;

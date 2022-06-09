@@ -22,6 +22,7 @@ void	ft_process_commands(t_command *cmds,
 		cmds[0].fdin = 0;
 	if (cmds[nbcmd - 1].fdout == -1)
 		cmds[nbcmd - 1].fdout = 1;
+	process_quote(cmds, nbcmd);
 	process_dollar(cmds, envp, nbcmd);
 	ft_process_fds(cmds, nbcmd);
 	ft_launch_commands(cmds, bt, envp, nbcmd);

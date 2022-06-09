@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjaqueme <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 12:39:51 by jjaqueme          #+#    #+#             */
-/*   Updated: 2021/10/14 12:39:51 by jjaqueme         ###   ########.fr       */
+/*   Created: 2021/10/14 12:39:48 by jjaqueme          #+#    #+#             */
+/*   Updated: 2021/10/14 12:39:48 by jjaqueme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_isnumber(char *str)
 {
-	write(fd, &c, 1);
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

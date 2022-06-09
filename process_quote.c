@@ -25,6 +25,7 @@ void	process_quote(t_command *cmds, int nbcmd)
 		i3 = 0;
 		while (i2 < cmds[i].nbarg)
 		{
+			printf(" base %s\n" , cmds[i].args[i2]);
 			if (cmds[i].args[i2][i3] == '\'')
 			{
 				while (cmds[i].args[i2][i3 + 1] != '\''

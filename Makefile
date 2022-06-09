@@ -4,13 +4,19 @@ SRCS_FILES	= main.c main_utils.c split_arg.c concat_tab.c ft_get_env.c coin_erro
 	launch_commands.c search_command.c \
 	builtin_manage.c builtin_cd.c builtin_pwd.c builtin_env.c builtin_default.c builtin_echo.c builtin_export.c builtin_unset.c  builtin_exit.c
 
+
+
+
+SRCS_FILES	= main.c
+
+
 SRCS		= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 BONUS_DIR	= ./
 BONUS_FILES	= 
 BONUS		= ${patsubst %, ${BONUS_DIR}%, ${BONUS_FILES}}
 
-LIBFT		= ./libft/
+LIBFT		= ./libft37/
 MAKELIB		= ${MAKE} -C ${LIBFT}
 
 OBJS		= ${SRCS:.c=.o}
@@ -24,11 +30,11 @@ AR			= ar rcs
 CP			= cp -f
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
-HEADS		= -I. -I${LIBFT} -I${HOME}/.brew/Cellar/readline/8.1.1/include/
+HEADS		= -I. -I${LIBFT} -I./readline/include/
 
-LIBS		= -L${HOME}/.brew/Cellar/readline/8.1.1/lib/ -lreadline -lhistory
+LIBS		= -L./readline/lib/ -lreadline -lhistory
 
 .c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o} ${HEADS}
@@ -36,9 +42,8 @@ LIBS		= -L${HOME}/.brew/Cellar/readline/8.1.1/lib/ -lreadline -lhistory
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			@tput setaf 46
 			${MAKELIB} all
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}/libft.a ${LIBS}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}/libft.a ${LIBS} -fsanitize=address
 
 ${NAMEB}:	${OBJSB}
 			${MAKELIB} all
@@ -47,16 +52,12 @@ ${NAMEB}:	${OBJSB}
 bonus:		${NAMEB}
 
 clean:
-			@tput setaf 1
 			${RM} ${OBJS} ${OBJSB}
 			${MAKELIB} clean
-			@tput setaf 46
 
 fclean:		clean
-			@tput setaf 1
 			${RM} ${NAME} ${NAMEB}
 			${MAKELIB} fclean
-			@tput setaf 46
 
 re:			fclean all
 

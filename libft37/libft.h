@@ -30,6 +30,11 @@ int		ft_isspace(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 
+int		ft_isnumber(char *str);
+
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
+
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
@@ -62,10 +67,10 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+size_t	ft_putchar_fd(char c, int fd);
+size_t	ft_putstr_fd(char *s, int fd);
+size_t	ft_putendl_fd(char *s, int fd);
+size_t	ft_putnbr_fd(int n, int fd);
 
 typedef struct s_list
 {
