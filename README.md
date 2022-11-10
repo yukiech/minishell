@@ -1,3 +1,5 @@
+Version non finale qui ne compile pas.
+
 # Minishell
 Minishell est un projet qui demande de recréer un shell miniature.<br />
 Celui-ci doit afficher un prompt et attendre des inputs. (+ Historique)<br />
